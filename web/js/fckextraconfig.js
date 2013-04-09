@@ -1,1 +1,0 @@
-// 	Write your extra configuruation settings for FCK Editor here
