@@ -1,0 +1,8 @@
+/app/cache/*
+/app/logs/*
+/vendor/
+/web/uploads/
+/app/bootstrap.php.cache
+/app/config/parameters.yml
+/composer.phar
+

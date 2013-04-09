@@ -1,0 +1,14 @@
+fos_js_routing:
+    routes_to_expose:
+        - admin_bundle_block_simpleblock_create
+        - admin_bundle_block_simpleblock_delete
+        - admin_bundle_block_simpleblock_edit
+        - admin_bundle_block_containerblock_create
+        - admin_bundle_block_containerblock_delete
+        - admin_bundle_block_containerblock_edit
+        - admin_bundle_block_referenceblock_create
+        - admin_bundle_block_referenceblock_delete
+        - admin_bundle_block_referenceblock_edit
+        - admin_bundle_block_actionblock_create
+        - admin_bundle_block_actionblock_delete
+        - admin_bundle_block_actionblock_edit

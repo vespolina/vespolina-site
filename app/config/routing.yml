@@ -1,0 +1,76 @@
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+
+admin_wo_locale:
+    pattern: /admin
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true # this for 301
+
+admin_dashboard_wo_locale:
+    pattern: /admin/dashboard
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true # this for 301
+
+admin_dashboard:
+    pattern: /{_locale}/admin/
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true # this for 301
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /{_locale}/admin
+
+sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /{_locale}/admin
+    requirements:
+        id:  .+
+
+#sonata_user:
+#    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+#    prefix: /{_locale}/admin
+
+sonata_media_gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+    requirements:
+        id:  .+
+
+sonata_media_media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media
+    requirements:
+        id:  .+
+
+#sonata_media_pixlr:
+#    resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
+#    prefix: /admin/media
+#    requirements:
+#        id:  .+
+
+_imagine:
+    resource: .
+    type:     imagine
+
+doctrine_phpcr_admin_bundle_odm_browser:
+    resource: "@SonataDoctrinePHPCRAdminBundle/Resources/config/routing/phpcrodmbrowser.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+symfony_cmf_tree:
+    resource: .
+    type: 'symfony_cmf_tree'

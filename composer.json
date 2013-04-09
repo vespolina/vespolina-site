@@ -1,0 +1,48 @@
+{
+    "name": "vespolina/vespolina-site",
+    "description": "The Vespolina website",
+    "require": {
+        "jackalope/jackalope-doctrine-dbal": "1.0.*@dev",
+        "doctrine/common": "2.3.*@dev",
+        "doctrine/doctrine-bundle": "1.2.0",
+        "doctrine/doctrine-fixtures-bundle": "2.1.*@dev",
+        "liip/doctrine-cache-bundle": "1.0.*@dev",
+        "liip/imagine-bundle": "dev-master",
+        "symfony/symfony": "2.2.1",
+        "symfony/swiftmailer-bundle": "2.2.1",
+        "symfony/assetic-bundle": "2.1.2",
+        "sensio/distribution-bundle": "2.2.1",
+        "sensio/generator-bundle": "2.2.1",
+        "symfony-cmf/symfony-cmf": "1.0.*@dev",
+        "sonata-project/admin-bundle": "2.2.*@dev",
+        "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*@dev",
+        "sonata-project/media-bundle": "2.2.*@dev"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Willem-Jan Zijderveld",
+            "email": "willemjan@beeldspraak.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink"
+    }
+}

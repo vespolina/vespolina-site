@@ -1,0 +1,17 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     ~
+    database_user:     ~
+    database_password: ~
+
+    mailer_transport:  mail
+    mailer_host:       ~
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            "BestSecretEver"
+
+    locales: [en,de,fr,nl]

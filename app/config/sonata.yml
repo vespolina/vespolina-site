@@ -1,0 +1,51 @@
+sonata_media:
+    default_context: default
+    db_driver: doctrine_phpcr # or doctrine_orm, doctrine_mongodb
+    contexts:
+        default: # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                default: { quality: 100 }
+    cdn:
+        # define the base url for the media
+        server:
+            path: ~ # if using liip_imagine leave this empty to have correct thumbnail urls generated
+
+    filesystem:
+        # define where the uploaded file will be stored and it's relative path from web
+        # if using liip_imagine only the reference file will be saved here
+        local:
+            directory: %kernel.root_dir%/../web/media
+            create: true
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata_admin_doctrine_phpcr.tree_block:
+            settings:
+                id: '/'
+            contexts:   [admin]
+
+sonata_doctrine_phpcr_admin:
+    document_tree:
+        Doctrine\ODM\PHPCR\Document\Generic:
+            valid_children:
+                - all
+        Symfony\Cmf\Bundle\SimpleCmsBundle\Document\Page: ~
+        Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route:
+            valid_children:
+                - Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route
+                - Symfony\Cmf\Bundle\RoutingExtraBundle\Document\RedirectRoute
+        Symfony\Cmf\Bundle\RoutingExtraBundle\Document\RedirectRoute:
+            valid_children: []
+        Symfony\Cmf\Bundle\MenuBundle\Document\MenuNode:
+            valid_children:
+                - Symfony\Cmf\Bundle\MenuBundle\Document\MenuNode
+                - Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode
+        Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode:
+            valid_children:
+                - Symfony\Cmf\Bundle\MenuBundle\Document\MenuNode
+                - Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode
