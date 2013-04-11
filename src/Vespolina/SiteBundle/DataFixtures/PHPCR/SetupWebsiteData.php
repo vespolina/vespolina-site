@@ -75,7 +75,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         /** @var $manager DocumentManager */
         $this->dm = $manager;
 
-        $this->routeRoot = $this->container->getParameter('symfony_cmf_routing_extra.route_basepath');
+        $this->routeRoot = $this->container->getParameter('symfony_cmf_routing_extra.routing_repositoryroot');
         $this->contentRoot = $this->container->getParameter('symfony_cmf_routing_extra.content_basepath');
         $this->menuRoot = $this->container->getParameter('symfony_cmf_menu.menu_basepath');
 

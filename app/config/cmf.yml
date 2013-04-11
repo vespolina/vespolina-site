@@ -5,3 +5,8 @@ symfony_cmf_routing_extra:
             symfony_cmf_routing_extra.dynamic_router: 200
     dynamic:
         enabled: true
+        generic_controller: symfony_cmf_content.controller:indexAction
+        controllers_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: symfony_cmf_content.controller:indexAction
+        templates_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: VespolinaSiteBundle:Page:default.html.twig
