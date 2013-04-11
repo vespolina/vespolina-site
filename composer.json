@@ -40,6 +40,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    },
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",

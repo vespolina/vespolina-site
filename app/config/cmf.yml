@@ -1,0 +1,7 @@
+symfony_cmf_routing_extra:
+    chain:
+        routers_by_id:
+            router.default: 100
+            symfony_cmf_routing_extra.dynamic_router: 200
+    dynamic:
+        enabled: true

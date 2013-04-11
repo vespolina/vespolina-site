@@ -1,0 +1,25 @@
+homepage:
+    route: /
+    title:
+        en: English Start
+        nl: Nederlandse Start
+        de: Deutsche Start
+    body:
+        en: <p>An OpenSource, Decoupled, e-commerce framework</p>
+    additionalInfoBlock:
+        children:
+            why-vespolina:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Why choose Vespolina?
+                template: VespolinaSiteBundle:Home:why-vespolina.html.twig
+                children:
+                    scalable:
+                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                        title: Scalable Ecommerce
+                    business-process:
+                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                        title: Business Process at it's core
+                    open-source:
+                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                        title: Open source

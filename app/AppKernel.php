@@ -55,6 +55,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\SymfonyCmfBlockBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
+            new Vespolina\SiteBundle\VespolinaSiteBundle(),
         );
 
         if ('dev' === $this->getEnvironment()) {
