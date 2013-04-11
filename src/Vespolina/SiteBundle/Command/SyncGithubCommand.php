@@ -1,0 +1,101 @@
+<?php
+
+namespace Vespolina\SiteBundle\Command;
+
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class SyncGithubCommand extends ContainerAwareCommand
+{
+
+    protected $input;
+    protected $country;
+    protected $output;
+    protected $type;
+		protected $client;
+
+    protected function configure()
+    {
+        $this
+            ->setName('vespolina:sync-github')
+            ->setDescription('Sync github data from vespolina respositories')
+            ->addOption('type', null, InputOption::VALUE_OPTIONAL, 'Store type', 'beverages')
+        ;
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+		
+		$this->client = new \Github\Client();
+		$result = $this->syncRepositories($input, $output);
+
+        $this->writeContributorsToTwigTemplate($result['contributors']);
+
+    }
+
+	protected function syncRepositories($input, $output)
+	{
+		
+		$contributors = array();
+		$repositories = $this->getGitRepositories();
+		
+		foreach($repositories as $repository) {
+			
+			$name = $repository['name'];
+			$repoContributors = $this->client->api('repo')->collaborators()->all('vespolina', $name);
+
+			foreach($repoContributors as $contributor) {
+				if (!array_key_exists($contributor['login'], $contributor )) {
+				
+					$contributors[$contributor['login']] = $contributor;
+			    }
+			}
+			$output->writeln('-' . $name);	
+		}
+
+        return array('contributors' => $contributors, 'repositories' => $repositories);
+	}
+
+	protected function getGitRepositories()
+	{
+
+		$retrievedRepositories =  $this->client->api('user')->repositories('vespolina');
+		$repositories = array();
+
+		foreach($retrievedRepositories as $repo) {
+		
+			if (true || strpos($repo['name'], 'Bundle') !== false ) {
+			
+	            $repositories[] = $repo;
+			}
+		}
+	
+		return $repositories;
+	}
+
+    protected function writeContributorsToTwigTemplate(array $contributors) {
+
+        $html = '';
+            $twigFile = __DIR__ . '/../Resources/views/Default/_contributors.html.twig';
+
+        foreach($contributors as $contributor) {
+
+            if (array_key_exists('name', $contributor)) {
+                $name = $contributor['name'];
+            }else {
+                $name = $contributor['login'];
+            }
+            $gravatarImageUrl = 'http://www.gravatar.com/avatar/' .
+                $contributor['gravatar_id'] ;
+            $gitUrl = 'http://www.github.com/' . $contributor['login'];
+            $html .=
+            '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a></span>';
+
+        }
+
+        file_put_contents($twigFile, $html);
+    }
+}
