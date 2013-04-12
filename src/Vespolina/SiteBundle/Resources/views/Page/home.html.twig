@@ -10,6 +10,13 @@
 
     <hr>
 
+    <div class="row-fluid">
+        <h2>{% trans %}Contributors{% endtrans %}</h2>
+        {% include 'VespolinaSiteBundle:Default:_contributors.html.twig' %}
+    </div>
+
+    <hr>
+
     <!-- Example row of columns -->
     <div class="row-fluid">
         {% if cmfMainContent.additionalInfoBlock and cmfMainContent.additionalInfoBlock.children %}
