@@ -28,12 +28,11 @@ class SyncGithubCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-		
 		$this->client = new \Github\Client();
 		$result = $this->syncRepositories($input, $output);
 
+        $output->writeln(count($result['contributors']) . ' unique contributors so far');
         $this->writeContributorsToTwigTemplate($result['contributors']);
-
     }
 
 	protected function syncRepositories($input, $output)
@@ -45,15 +44,14 @@ class SyncGithubCommand extends ContainerAwareCommand
 		foreach($repositories as $repository) {
 			
 			$name = $repository['name'];
-			$repoContributors = $this->client->api('repo')->collaborators()->all('vespolina', $name);
+			$repoContributors = $this->client->api('repo')->contributors('vespolina', $name);
 
-			foreach($repoContributors as $contributor) {
+         	foreach($repoContributors as $contributor) {
 				if (!array_key_exists($contributor['login'], $contributor )) {
-				
 					$contributors[$contributor['login']] = $contributor;
 			    }
 			}
-			$output->writeln('-' . $name);	
+			$output->writeln('-' . $name . ' with ' . count($repoContributors) . ' contributors');
 		}
 
         return array('contributors' => $contributors, 'repositories' => $repositories);
@@ -66,9 +64,7 @@ class SyncGithubCommand extends ContainerAwareCommand
 		$repositories = array();
 
 		foreach($retrievedRepositories as $repo) {
-		
-			if (true || strpos($repo['name'], 'Bundle') !== false ) {
-			
+			if (!$this->isIgnoredRepository($repo['name'])) {
 	            $repositories[] = $repo;
 			}
 		}
@@ -76,10 +72,20 @@ class SyncGithubCommand extends ContainerAwareCommand
 		return $repositories;
 	}
 
+    protected function isIgnoredRepository($name)
+    {
+        return
+            $name == 'molino' ||
+            $name == 'VespolinaCart' ||
+            $name == 'VespolinaCartBundle' ||
+            $name == 'VespolinaDocumentBundle' ||
+            $name == 'VespolinaEcommerceFlowsBundle';
+    }
+
     protected function writeContributorsToTwigTemplate(array $contributors) {
 
         $html = '';
-            $twigFile = __DIR__ . '/../Resources/views/Default/_contributors.html.twig';
+        $twigFile = __DIR__ . '/../Resources/views/Default/_contributors.html.twig';
 
         foreach($contributors as $contributor) {
 
@@ -88,11 +94,10 @@ class SyncGithubCommand extends ContainerAwareCommand
             }else {
                 $name = $contributor['login'];
             }
-            $gravatarImageUrl = 'http://www.gravatar.com/avatar/' .
-                $contributor['gravatar_id'] ;
+            $gravatarImageUrl = 'http://www.gravatar.com/avatar/' . $contributor['gravatar_id'] ;
             $gitUrl = 'http://www.github.com/' . $contributor['login'];
             $html .=
-            '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a></span>';
+            '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a></span>' . "\r\n";
 
         }
 
