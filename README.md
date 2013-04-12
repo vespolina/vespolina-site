@@ -15,12 +15,12 @@ Quick installation instructions
 4. Create a vhost for your project
 5. Execute the follow commands
 
-
-    $ php app/console doctrine:database:create
-    $ php app/console doctrine:phpcr:init:dbal
-    $ php app/console doctrine:phpcr:register-system-node-types
-    $ php app/console doctrine:phpcr:fixtures:load
-
+```
+$ php app/console doctrine:database:create
+$ php app/console doctrine:phpcr:init:dbal
+$ php app/console doctrine:phpcr:register-system-node-types
+$ php app/console doctrine:phpcr:fixtures:load
+```
 
 If all has gone well, you should now be able to view a homepage. It will most probably redirect you to /en.
 Everything below the navigation comes from PHPCR.
