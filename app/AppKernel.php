@@ -36,6 +36,8 @@ class AppKernel extends Kernel
             # Liip
             new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            # Lunetics
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             # Sonata
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),

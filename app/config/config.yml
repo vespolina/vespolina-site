@@ -79,12 +79,9 @@ doctrine_phpcr:
             SonataMediaBundle:
                 prefix: Sonata\MediaBundle\PHPCR
         locales:
-            nl:
-                - nl
-                - en
-            en:
-                - en
-                - nl
+            en: ['en', 'de', 'nl']
+            nl: ['nl', 'en', 'de']
+            de: ['de', 'en', 'nl']
         image:
             imagine_filter: false
 
@@ -105,6 +102,17 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+lunetics_locale:
+    strict_mode: true
+    allowed_locales:
+        - en
+        - de
+        - nl
+    guessing_order:
+        - cookie
+        - router
+        - browser
 
 #fos_user:
 #    db_driver:     orm

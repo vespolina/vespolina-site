@@ -19,12 +19,15 @@ use Doctrine\ODM\PHPCR\ChildrenCollection;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PHPCR\Util\NodeHelper;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
 use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route;
+use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -148,12 +151,42 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             }
 
             if (isset($pageData['route'])) {
-                $route = new Route();
-                $routeName = ('/' === $pageData['route']) ? 'home' : $pageData['route'];
-                $route->setName($routeName);
-                $route->setParent($routeRoot);
-                $route->setRouteContent($page);
-                $this->dm->persist($route);
+                if (is_array($pageData['route'])) {
+                    foreach ($pageData['route'] as $locale => $route) {
+                        // Prefix with / when missing
+                        $route = (0 !== strpos($route, '/')) ? '/' . $route : $route;
+                        // Check if it starts with locale
+                        if (substr($route, 0, 3) !== '/' . $locale) {
+                            if ($route === '/') {
+                                $route = '/' . $locale;
+                            } else {
+                                $route = '/' . $locale . $route;
+                            }
+                        }
+                        $routeObject = new Route();
+                        $routeObject->setName(basename($route));
+                        $routeObject->setParent($this->getParentRoute($this->routeRoot . $route, true));
+                        $routeObject->setRouteContent($page);
+                        $routeObject->setRequirement('_locale', $locale);
+                        $routeObject->setDefault('_locale', $locale);
+                        if (isset($pageData['template'])) {
+                            $routeObject->setDefault(RouteObjectInterface::TEMPLATE_NAME, $pageData['template']);
+                        }
+                        $this->dm->persist($routeObject);
+                    }
+
+                } else {
+                    $route = new Route();
+                    $routeName = ('/' === $pageData['route']) ? 'start' : $pageData['route'];
+                    $route->setName($routeName);
+                    $route->setParent($routeRoot);
+                    $route->setRouteContent($page);
+                    $route->setRequirement('_locale', $this->defaultLocale);
+                    if (isset($pageData['template'])) {
+                        $route->setDefault(RouteObjectInterface::TEMPLATE_NAME, $pageData['template']);
+                    }
+                    $this->dm->persist($route);
+                }
             }
 
             if (isset($pageData['additionalInfoBlock'])) {
@@ -198,7 +231,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             if (isset($child['class'])) {
                 $childBlockClass = $child['class'];
             }
-            /** @var $block BlockInterface */
+            /** @var $block BaseBlock */
             $block = new $childBlockClass;
             $block->setName($childName);
             $block->setParentDocument($parent);
@@ -221,6 +254,19 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 }
             }
 
+            if (isset($child['content'])) {
+                if (is_array($child['content'])) {
+                    if (!$this->dm->isDocumentTranslatable($block)) {
+                        throw new \DomainException(sprintf('Block %s isn\'t translatable', $childName));
+                    }
+                    foreach ($child['content'] as $locale => $content) {
+                        $localeData[$locale]['content'] = $content;
+                    }
+                } else {
+                    $block->setContent($child['body']); // We just hope this block type supports it here ;)
+                }
+            }
+
             $this->dm->persist($block);
 
             foreach ($localeData as $locale => $data) {
@@ -231,11 +277,43 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 $this->dm->bindTranslation($block, $locale);
             }
 
+            if (isset($child['children'])) {
+                $block->setChildren($this->processChildren($block, $child['children']));
+            }
+
             $children->add($block);
 
         }
 
         return $children;
+    }
+
+    /**
+     * @param $route string
+     * @param bool $createWhenMissing
+     * @return Route
+     * @throws \Exception
+     */
+    protected function getParentRoute($route, $createWhenMissing = false)
+    {
+        $parentPath = dirname($route);
+        $parent = $this->dm->find(null, $parentPath);
+        if ($parent) {
+            return $parent;
+        }
+
+        if (!$createWhenMissing) {
+            throw new RouteNotFoundException($parentPath);
+        }
+
+
+        $parentRoute = $this->getParentRoute($parentPath, $createWhenMissing);
+        $parent = new Route();
+        $parent->setParent($parentRoute);
+        $parent->setName(basename($parentPath));
+        $this->dm->persist($parent);
+
+        return $route;
     }
 
     /**

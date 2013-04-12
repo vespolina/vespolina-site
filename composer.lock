@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "937d07f4581a646292725c17442f45ea",
+    "hash": "96c53af7cac2502955e073a37d8b8ed2",
     "packages": [
         {
             "name": "doctrine/common",
@@ -1190,6 +1190,68 @@
                 "imagine"
             ],
             "time": "2013-04-08 16:03:27"
+        },
+        {
+            "name": "lunetics/locale-bundle",
+            "version": "dev-master",
+            "target-dir": "Lunetics/LocaleBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lunetics/LocaleBundle.git",
+                "reference": "10cb68dbf1a0d31f3810c1f047447381c35c4ee2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lunetics/LocaleBundle/zipball/10cb68dbf1a0d31f3810c1f047447381c35c4ee2",
+                "reference": "10cb68dbf1a0d31f3810c1f047447381c35c4ee2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.1,<2.4-dev",
+                "symfony/locale": ">=2.1,<2.4-dev",
+                "symfony/validator": ">=2.1,<2.4-dev",
+                "symfony/yaml": ">=2.1,<2.4-dev"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "symfony/form": ">=2.1,<2.4-dev",
+                "twig/twig": "1.*"
+            },
+            "suggest": {
+                "ext-intl": "Needed for displaying the countryname in the locale language"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Lunetics\\LocaleBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lunetics",
+                    "homepage": "http://www.lunetics.com"
+                },
+                {
+                    "name": "Christophe Willesmen",
+                    "homepage": "http://christophewillemsen.com"
+                }
+            ],
+            "description": "A Bundle for switching Languages",
+            "keywords": [
+                "browser",
+                "bundle",
+                "cookie",
+                "language",
+                "locale",
+                "multilanguage",
+                "router"
+            ],
+            "time": "2013-04-08 13:36:48"
         },
         {
             "name": "monolog/monolog",
@@ -2959,6 +3021,7 @@
         "doctrine/doctrine-fixtures-bundle": 20,
         "liip/doctrine-cache-bundle": 20,
         "liip/imagine-bundle": 20,
+        "lunetics/locale-bundle": 20,
         "symfony-cmf/symfony-cmf": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-phpcr-admin-bundle": 20,
