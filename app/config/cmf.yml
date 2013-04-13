@@ -14,3 +14,7 @@ symfony_cmf_routing_extra:
 symfony_cmf_content:
     multilang:
         locales: %locales%
+
+symfony_cmf_menu:
+    multilang:
+        locales: %locales%

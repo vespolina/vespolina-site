@@ -1,0 +1,24 @@
+main:
+    label:
+        en: Main menu
+        de: Hauptmenü
+        nl: Hoofdmenu
+    children:
+        start:
+            label:
+                en: Start
+                nl: Begin
+                de: Start
+            content: homepage
+        try:
+            label:
+                en: Try
+                nl: Probeer
+                de: Versuch
+            content: try
+        google:
+            label: Google
+            uri:
+                en: http://www.google.com
+                de: http://www.google.de
+                nl: http://www.google.nl
