@@ -22,3 +22,9 @@ main:
                 en: http://www.google.com
                 de: http://www.google.de
                 nl: http://www.google.nl
+        community:
+            label:
+                en: Community
+                nl: Community
+                de: Community
+            content: community

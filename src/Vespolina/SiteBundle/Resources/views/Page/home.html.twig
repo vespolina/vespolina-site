@@ -24,7 +24,9 @@
                 <div class="span4">
                     <h2>{{ childBlock.title }}</h2>
                     {{ childBlock.content|raw }}
-                    <p><a class="btn" href="#">View details &raquo;</a></p>
+                    {% if childBlock.settings.route %}
+                        <p><a class="btn" href="{{ path(childBlock.settings.route) }}">View details &raquo;</a></p>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% endif %}

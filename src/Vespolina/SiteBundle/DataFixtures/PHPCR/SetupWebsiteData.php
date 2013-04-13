@@ -198,18 +198,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                         $this->dm->persist($routeObject);
                     }
 
-                }/* else {
-                    $route = new Route();
-                    $routeName = $this->fixLocaleRoute($this->defaultLocale, $pageData['route']);
-                    $route->setName(basename($routeName));
-                    $route->setParent($this->getParentRoute($this->routeRoot . $routeName, true));
-                    $route->setRouteContent($page);
-                    $route->setDefault('_locale', $this->defaultLocale);
-                    if (isset($pageData['template'])) {
-                        $route->setDefault(RouteObjectInterface::TEMPLATE_NAME, $pageData['template']);
-                    }
-                    $this->dm->persist($route);
-                }*/
+                }
             }
 
             if (isset($pageData['additionalInfoBlock'])) {
@@ -367,6 +356,10 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 } else {
                     $block->setContent($child['body']); // We just hope this block type supports it here ;)
                 }
+            }
+
+            if (isset($child['settings'])) {
+                $block->setSettings($child['settings']);
             }
 
             $this->dm->persist($block);
