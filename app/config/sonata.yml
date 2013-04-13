@@ -30,11 +30,11 @@ sonata_block:
             contexts:   [admin]
 
 sonata_doctrine_phpcr_admin:
+    document_tree_defaults: [locale]
     document_tree:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
-        Symfony\Cmf\Bundle\SimpleCmsBundle\Document\Page: ~
         Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route:
             valid_children:
                 - Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route
@@ -49,3 +49,26 @@ sonata_doctrine_phpcr_admin:
             valid_children:
                 - Symfony\Cmf\Bundle\MenuBundle\Document\MenuNode
                 - Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode
+        Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent:
+            valid_children:
+                - all
+        Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent:
+            valid_children:
+                - all
+
+sonata_admin:
+    title: Vespolina Project Backend
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: sonata.admin.block.admin_list }
+            - { position: right, type: sonata_admin_doctrine_phpcr.tree_block }
+        groups:
+            content:
+                label: Content
+                items:
+                    - symfony_cmf_content.multilang.admin
+            menu:
+                label: Menu
+                items:
+                    - symfony_cmf_menu.multilang.admin
