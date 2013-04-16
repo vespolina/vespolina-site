@@ -1,0 +1,17 @@
+.switcher {
+    width: 220px;
+    p {
+        float: left;
+    }
+    ul {
+        list-style: none;
+    }
+    li {
+        float: left;
+        padding: 0 0.75em;
+    }
+}
+
+.contributor {
+    margin-right: 0.5em;
+}

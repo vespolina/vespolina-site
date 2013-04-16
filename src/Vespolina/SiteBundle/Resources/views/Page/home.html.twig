@@ -1,0 +1,34 @@
+{% extends 'VespolinaSiteBundle::layout.html.twig' %}
+
+{% block content %}
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>{{ cmfMainContent.title }}</h1>
+        <p class="lead">{{ cmfMainContent.body|raw }}</p>
+        <a class="btn btn-large btn-success" href="#">Get started today</a>
+    </div>
+
+    <hr>
+
+    <div class="row-fluid">
+        <h2>{% trans %}Contributors{% endtrans %}</h2>
+        {% include 'VespolinaSiteBundle:Default:_contributors.html.twig' %}
+    </div>
+
+    <hr>
+
+    <!-- Example row of columns -->
+    <div class="row-fluid">
+        {% if cmfMainContent.additionalInfoBlock and cmfMainContent.additionalInfoBlock.children %}
+            {% for childBlock in cmfMainContent.additionalInfoBlock.children %}
+                <div class="span4">
+                    <h2>{{ childBlock.title }}</h2>
+                    {{ childBlock.content|raw }}
+                    {% if childBlock.settings.route %}
+                        <p><a class="btn" href="{{ path(childBlock.settings.route) }}">View details &raquo;</a></p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

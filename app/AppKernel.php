@@ -36,6 +36,8 @@ class AppKernel extends Kernel
             # Liip
             new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            # Lunetics
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             # Sonata
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
@@ -50,6 +52,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             # Symfony CMF
+            new Symfony\Cmf\Bundle\CoreBundle\SymfonyCmfCoreBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\SymfonyCmfTreeBrowserBundle(),
             new Symfony\Cmf\Bundle\ContentBundle\SymfonyCmfContentBundle(),
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),

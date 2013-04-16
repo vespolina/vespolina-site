@@ -1,25 +1,91 @@
 homepage:
-    route: /
+    route:
+        en: /
+        nl: /
+        de: /
     title:
         en: English Start
         nl: Nederlandse Start
         de: Deutsche Start
     body:
         en: <p>An OpenSource, Decoupled, e-commerce framework</p>
+    template: VespolinaSiteBundle:Page:home.html.twig
     additionalInfoBlock:
         children:
-            why-vespolina:
+            scalable:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
-                    en: Why choose Vespolina?
-                template: VespolinaSiteBundle:Home:why-vespolina.html.twig
-                children:
-                    scalable:
-                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
-                        title: Scalable Ecommerce
-                    business-process:
-                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
-                        title: Business Process at it's core
-                    open-source:
-                        class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
-                        title: Open source
+                    en: Scalable Ecommerce
+                    de: Skalierbare Ecommerce
+                content:
+                    en: Dummy text
+                settings:
+                    route: /cms/routes/en/try
+            business-process:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Business Process at it's core
+                    de: Business Process an ihr ist Kern
+                content:
+                    en: Dummy text
+                settings:
+                    route: /cms/routes/en/community
+            open-source:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Open source
+                    de: Open Source
+                content:
+                    en: Dummy text
+                settings:
+                    route: /cms/routes/en/try
+try:
+    route: /try
+    title:
+        en: Available demo systems
+        de: verfügbare Systemressourcen
+        nl: Beschikbare demo systemen
+    body: |
+        <p>Below, you find a list of demo systems. This is still a work in progress, stuff might still break.</p>
+        <p>All information you enter into the demo systems will not lead to any purchase as data is refreshed every day.</p>
+    additionalInfoBlock:
+        children:
+            standard-us:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Beverages, standard store, United States
+                    nl: Dranken, standaard shop, USA
+                    de: Getränke, Standard-Shop, Vereinigte Staaten
+                content:
+                    en: <p>A typical store for beverages using the sandbox with taxation rules for US (state Oregon). Default product view is tiled. It's based on a normal checkout B2C process with physical fulfillment.</p>
+                settings:
+                    url: http://try.vespolina.org/standard-beverages-store-us/web/app.php
+            standard-be:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Beverages, standard store, Belgium
+                    nl: Dranken, standaard shop, België
+                    de: Getränke, Standard-Shop, Belgien
+                content:
+                    en: <p>A typical store for beverages using the sandbox with taxation rules for Belgium (eg. VAT taxation). Default product view is a small list (optimized for small product lists). It's based on a normal B2C checkout process with physical fulfillment.</p>
+                settings:
+                    url: http://try.vespolina.org/standard-beverages-store-be/web/app.php
+            daily-france:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                title:
+                    en: Daily deal Beverages, France
+                    nl: Dagelijkse aanbieding dranken, Frankrijk
+                    de: Tagesangebot Getränke, Frankreich
+                content:
+                    en: <p>A daily deal store (one product a day) using the sandbox with taxation rules for France (eg. VAT taxation). It's based on a normal checkout B2C process with physical fulfillment.</p>
+                settings:
+                    url: http://try.vespolina.org/daily-deal-beverages-store-fr/web/app.php
+community:
+    route: /community
+    title:
+        en: Community
+        de: Community
+        nl: Community
+    body: |
+        <p>Below, you find a list of demo systems. This is still a work in progress, stuff might still break.</p>
+        <p>All information you enter into the demo systems will not lead to any purchase as data is refreshed every day.</p>

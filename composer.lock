@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "937d07f4581a646292725c17442f45ea",
+    "hash": "13ffa5a5c638166bc7d32c4bcee773c0",
     "packages": [
         {
             "name": "doctrine/common",
@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "eef10f6b92706bdae2841a8fdeb45ad8999b15b3"
+                "reference": "6924952026b77ff492da559b04ad166d25c611cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/eef10f6b92706bdae2841a8fdeb45ad8999b15b3",
-                "reference": "eef10f6b92706bdae2841a8fdeb45ad8999b15b3",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/6924952026b77ff492da559b04ad166d25c611cb",
+                "reference": "6924952026b77ff492da559b04ad166d25c611cb",
                 "shasum": ""
             },
             "require": {
@@ -127,7 +127,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2013-03-11 00:25:48"
+            "time": "2013-04-11 23:14:04"
         },
         {
             "name": "doctrine/dbal",
@@ -859,6 +859,61 @@
             "time": "2013-03-25 12:59:27"
         },
         {
+            "name": "knplabs/github-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/php-github-api.git",
+                "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
+                "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "kriswallsmith/buzz": ">=0.7",
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Github\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "GitHub API v3 client",
+            "homepage": "https://github.com/KnpLabs/php-github-api",
+            "keywords": [
+                "api",
+                "gh",
+                "gist",
+                "github"
+            ],
+            "time": "2013-04-01 07:38:45"
+        },
+        {
             "name": "knplabs/knp-menu",
             "version": "1.1.x-dev",
             "source": {
@@ -1192,6 +1247,68 @@
             "time": "2013-04-08 16:03:27"
         },
         {
+            "name": "lunetics/locale-bundle",
+            "version": "dev-master",
+            "target-dir": "Lunetics/LocaleBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lunetics/LocaleBundle.git",
+                "reference": "10cb68dbf1a0d31f3810c1f047447381c35c4ee2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lunetics/LocaleBundle/zipball/10cb68dbf1a0d31f3810c1f047447381c35c4ee2",
+                "reference": "10cb68dbf1a0d31f3810c1f047447381c35c4ee2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.1,<2.4-dev",
+                "symfony/locale": ">=2.1,<2.4-dev",
+                "symfony/validator": ">=2.1,<2.4-dev",
+                "symfony/yaml": ">=2.1,<2.4-dev"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "symfony/form": ">=2.1,<2.4-dev",
+                "twig/twig": "1.*"
+            },
+            "suggest": {
+                "ext-intl": "Needed for displaying the countryname in the locale language"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Lunetics\\LocaleBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lunetics",
+                    "homepage": "http://www.lunetics.com"
+                },
+                {
+                    "name": "Christophe Willesmen",
+                    "homepage": "http://christophewillemsen.com"
+                }
+            ],
+            "description": "A Bundle for switching Languages",
+            "keywords": [
+                "browser",
+                "bundle",
+                "cookie",
+                "language",
+                "locale",
+                "multilanguage",
+                "router"
+            ],
+            "time": "2013-04-08 13:36:48"
+        },
+        {
             "name": "monolog/monolog",
             "version": "dev-master",
             "source": {
@@ -1508,12 +1625,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "9f7291d7ccb33ea80102a3764680706681ceaacd"
+                "reference": "f6dfcf0a45a1099dcae84561d8355768c0d76f2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/9f7291d7ccb33ea80102a3764680706681ceaacd",
-                "reference": "9f7291d7ccb33ea80102a3764680706681ceaacd",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/f6dfcf0a45a1099dcae84561d8355768c0d76f2a",
+                "reference": "f6dfcf0a45a1099dcae84561d8355768c0d76f2a",
                 "shasum": ""
             },
             "require": {
@@ -1574,7 +1691,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-04-08 15:51:28"
+            "time": "2013-04-11 21:40:47"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1973,12 +2090,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "1bcee87c29469a4220e5180fa47cbff69e941c92"
+                "reference": "f4756b2a86c654843f5efc1a09e23dfc3d5460d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/1bcee87c29469a4220e5180fa47cbff69e941c92",
-                "reference": "1bcee87c29469a4220e5180fa47cbff69e941c92",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/f4756b2a86c654843f5efc1a09e23dfc3d5460d6",
+                "reference": "f4756b2a86c654843f5efc1a09e23dfc3d5460d6",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2159,7 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2013-03-28 09:25:16"
+            "time": "2013-04-10 10:25:39"
         },
         {
             "name": "sonata-project/notification-bundle",
@@ -2118,12 +2235,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "28873a893b6537d36b857b4cb229549c84bcb82a"
+                "reference": "e77eb358a1aa7157afb922f33e2afc22f6a7bef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/28873a893b6537d36b857b4cb229549c84bcb82a",
-                "reference": "28873a893b6537d36b857b4cb229549c84bcb82a",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e77eb358a1aa7157afb922f33e2afc22f6a7bef2",
+                "reference": "e77eb358a1aa7157afb922f33e2afc22f6a7bef2",
                 "shasum": ""
             },
             "require": {
@@ -2159,7 +2276,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2013-04-09 15:37:09"
+            "time": "2013-04-11 10:22:54"
         },
         {
             "name": "symfony-cmf/block-bundle",
@@ -2338,12 +2455,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/MenuBundle.git",
-                "reference": "0c63c10d92378a91a914238b071880b8bde88409"
+                "reference": "91f239d03d56ba55844e343504af1ff751a25926"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/MenuBundle/zipball/0c63c10d92378a91a914238b071880b8bde88409",
-                "reference": "0c63c10d92378a91a914238b071880b8bde88409",
+                "url": "https://api.github.com/repos/symfony-cmf/MenuBundle/zipball/91f239d03d56ba55844e343504af1ff751a25926",
+                "reference": "91f239d03d56ba55844e343504af1ff751a25926",
                 "shasum": ""
             },
             "require": {
@@ -2383,7 +2500,7 @@
                 "Symfony CMF",
                 "menu"
             ],
-            "time": "2013-04-08 10:26:06"
+            "time": "2013-04-12 13:25:01"
         },
         {
             "name": "symfony-cmf/routing",
@@ -2392,12 +2509,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing.git",
-                "reference": "71e3f4c74027f2fda649cec3c77a0501309bbf15"
+                "reference": "ed18eb44bec624bc244eb37b7ab7a39becaeb1eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/71e3f4c74027f2fda649cec3c77a0501309bbf15",
-                "reference": "71e3f4c74027f2fda649cec3c77a0501309bbf15",
+                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/ed18eb44bec624bc244eb37b7ab7a39becaeb1eb",
+                "reference": "ed18eb44bec624bc244eb37b7ab7a39becaeb1eb",
                 "shasum": ""
             },
             "require": {
@@ -2435,7 +2552,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2013-04-07 21:52:22"
+            "time": "2013-04-12 12:40:51"
         },
         {
             "name": "symfony-cmf/routing-extra-bundle",
@@ -2902,12 +3019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "1819d97520079ade78abac7255e5b1e115bc7789"
+                "reference": "8bbbecd08e00615ad90b46ef7486abdfab911da9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1819d97520079ade78abac7255e5b1e115bc7789",
-                "reference": "1819d97520079ade78abac7255e5b1e115bc7789",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8bbbecd08e00615ad90b46ef7486abdfab911da9",
+                "reference": "8bbbecd08e00615ad90b46ef7486abdfab911da9",
                 "shasum": ""
             },
             "require": {
@@ -2943,7 +3060,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-04-09 16:55:44"
+            "time": "2013-04-12 09:46:40"
         }
     ],
     "packages-dev": [
@@ -2959,6 +3076,7 @@
         "doctrine/doctrine-fixtures-bundle": 20,
         "liip/doctrine-cache-bundle": 20,
         "liip/imagine-bundle": 20,
+        "lunetics/locale-bundle": 20,
         "symfony-cmf/symfony-cmf": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-phpcr-admin-bundle": 20,

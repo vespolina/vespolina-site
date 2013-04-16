@@ -14,4 +14,4 @@ parameters:
     locale:            en
     secret:            "BestSecretEver"
 
-    locales: [en,de,fr,nl]
+    locales: [en,de,nl]

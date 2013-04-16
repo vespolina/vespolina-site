@@ -16,15 +16,20 @@ namespace Vespolina\SiteBundle\DataFixtures\PHPCR;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\PHPCR\ChildrenCollection;
+use Doctrine\ODM\PHPCR\Document\Generic;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PHPCR\Util\NodeHelper;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
+use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode;
 use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route;
+use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -54,10 +59,20 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
     /** @var string */
     protected $defaultLocale;
 
+    /** @var array */
+    protected $availableLocales;
+
+    /** @var bool */
+    protected $verbose = true;
+
+    /** @var array */
+    protected $pages;
+
     public function __construct()
     {
         $this->output = new ConsoleOutput();
         $this->yaml = new Yaml();
+        $this->pages = array();
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -80,16 +95,23 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         $this->menuRoot = $this->container->getParameter('symfony_cmf_menu.menu_basepath');
 
         $this->defaultLocale = $this->container->getParameter('kernel.default_locale');
-        $this->availableLocales = $this->dm->getLocaleChooserStrategy()->getDefaultLocale();
+        $this->availableLocales = $this->container->getParameter('doctrine_phpcr.odm.locales');
 
         try {
             $this->createRootNodes();
             $this->loadBasicData();
+            $this->loadMenuData();
         } catch (\Exception $e) {
             $this->output->writeln(sprintf('<error>Error while loading WebsiteData: %s</error>', $e->getMessage()));
+            if ($this->verbose) {
+                $this->output->write($e->getTraceAsString());
+            }
         }
     }
 
+    /**
+     * Creates the root Nodes required for using routes, content and menus
+     */
     protected function createRootNodes()
     {
         $this->output->writeln(sprintf('<info>Creating %s, %s and %s</info>', $this->routeRoot, $this->contentRoot, $this->menuRoot));
@@ -101,6 +123,10 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         $this->dm->getPhpcrSession()->save();
     }
 
+    /**
+     * Loads the basic pages from 01-basic.yml
+     * @throws \DomainException
+     */
     protected function loadBasicData()
     {
         $contentRoot = $this->dm->find(null, $this->contentRoot);
@@ -148,12 +174,31 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             }
 
             if (isset($pageData['route'])) {
-                $route = new Route();
-                $routeName = ('/' === $pageData['route']) ? 'home' : $pageData['route'];
-                $route->setName($routeName);
-                $route->setParent($routeRoot);
-                $route->setRouteContent($page);
-                $this->dm->persist($route);
+
+                if (!is_array($pageData['route'])) {
+                    $routes = array();
+                    foreach (array_keys($this->availableLocales) as $locale) {
+                        $routes[$locale] = $pageData['route'];
+                    }
+                    $pageData['route'] = $routes;
+                }
+
+                if (is_array($pageData['route'])) {
+                    foreach ($pageData['route'] as $locale => $route) {
+                        $route = $this->fixLocaleRoute($locale, $route);
+                        $routeObject = new Route();
+                        $routeObject->setName(basename($route));
+                        $routeObject->setParent($this->getParentRoute($this->routeRoot . $route, true));
+                        $routeObject->setRouteContent($page);
+                        $routeObject->setRequirement('_locale', $locale);
+                        $routeObject->setDefault('_locale', $locale);
+                        if (isset($pageData['template'])) {
+                            $routeObject->setDefault(RouteObjectInterface::TEMPLATE_NAME, $pageData['template']);
+                        }
+                        $this->dm->persist($routeObject);
+                    }
+
+                }
             }
 
             if (isset($pageData['additionalInfoBlock'])) {
@@ -185,11 +230,90 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                     $this->dm->bindTranslation($page, $locale);
                 }
             }
+
+            $this->pages[$page->getName()] = $page;
         }
 
         $this->dm->flush();
     }
 
+    protected function loadMenuData()
+    {
+        $data = $this->loadYaml('02-menus.yml');
+
+        foreach ($data as $menu => $menuData) {
+            $label = isset($menuData['label']) ? $menuData['label'] : null;
+            $menuNode = $this->getMenuNode($menu, $label, true);
+            $menuNode->setChildrenAttributes(array('class' => 'nav'));
+
+            $dm = $this->dm;
+            $pages = $this->pages;
+            $createMenuItems = function($parentItem, $menuData) use($dm, $pages, &$createMenuItems) {
+                foreach ($menuData as $itemName => $itemData) {
+                    $item = new MultilangMenuNode();
+                    $item->setName($itemName);
+                    $item->setParent($parentItem);
+
+                    // TODO submenus
+
+                    $dm->persist($item);
+
+                    $localeData = array();
+                    if (isset($itemData['label'])) {
+                        if (is_array($itemData['label'])) {
+                            foreach ($itemData['label'] as $locale => $label) {
+                                $localeData[$locale]['label'] = $label;
+                            }
+                        } else {
+                            $item->setLabel($itemData['label']);
+                        }
+                    }
+
+                    if (isset($itemData['content'])) {
+                        if (!isset($pages[$itemData['content']])) {
+                            throw new \DomainException(sprintf('Content "%s" doesn\'t exists', $itemData['content']));
+                        }
+                        $item->setContent($pages[$itemData['content']]);
+                    }
+
+                    if (isset($itemData['uri'])) {
+                        if (is_array($itemData['uri'])) {
+                            foreach ($itemData['uri'] as $locale => $uri) {
+                                $localeData[$locale]['uri'] = $uri;
+                            }
+                        } else {
+                            $item->setUri($itemData['uri']);
+                        }
+                    }
+
+                    foreach ($localeData as $locale => $data) {
+                        foreach ($data as $key => $value) {
+                            $method = 'set' . ucfirst($key);
+                            $item->{$method}($value);
+                        }
+                        $dm->bindTranslation($item, $locale);
+                    }
+
+                    if (isset($menudata['children'])) {
+                        $createMenuItems($item, $menuData['children']);
+                    }
+                }
+            };
+
+            if (isset($menuData['children'])) {
+                $createMenuItems($menuNode, $menuData['children']);
+            }
+        }
+
+        $this->dm->flush();
+    }
+
+    /**
+     * @param $parent
+     * @param $childrenData
+     * @return ChildrenCollection
+     * @throws \DomainException
+     */
     protected function processChildren($parent, $childrenData)
     {
         $children = new ChildrenCollection($this->dm, $parent);
@@ -198,7 +322,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             if (isset($child['class'])) {
                 $childBlockClass = $child['class'];
             }
-            /** @var $block BlockInterface */
+            /** @var $block BaseBlock */
             $block = new $childBlockClass;
             $block->setName($childName);
             $block->setParentDocument($parent);
@@ -221,6 +345,23 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 }
             }
 
+            if (isset($child['content'])) {
+                if (is_array($child['content'])) {
+                    if (!$this->dm->isDocumentTranslatable($block)) {
+                        throw new \DomainException(sprintf('Block %s isn\'t translatable', $childName));
+                    }
+                    foreach ($child['content'] as $locale => $content) {
+                        $localeData[$locale]['content'] = $content;
+                    }
+                } else {
+                    $block->setContent($child['body']); // We just hope this block type supports it here ;)
+                }
+            }
+
+            if (isset($child['settings'])) {
+                $block->setSettings($child['settings']);
+            }
+
             $this->dm->persist($block);
 
             foreach ($localeData as $locale => $data) {
@@ -231,11 +372,104 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 $this->dm->bindTranslation($block, $locale);
             }
 
+            if (isset($child['children'])) {
+                $block->setChildren($this->processChildren($block, $child['children']));
+            }
+
             $children->add($block);
 
         }
 
         return $children;
+    }
+
+    /**
+     * @param string $route
+     * @param bool $createWhenMissing
+     * @return Route
+     * @throws \Exception
+     */
+    protected function getParentRoute($route, $createWhenMissing = false)
+    {
+        $parentPath = dirname($route);
+        $parent = $this->dm->find(null, $parentPath);
+        if ($parent) {
+            return $parent;
+        }
+
+        if (!$createWhenMissing) {
+            throw new RouteNotFoundException($parentPath);
+        }
+
+
+        $parentRoute = $this->getParentRoute($parentPath, $createWhenMissing);
+        $parent = new Route();
+        $parent->setParent($parentRoute);
+        $parent->setName(basename($parentPath));
+        $this->dm->persist($parent);
+
+        return $route;
+    }
+
+    /**
+     * @param string $menu
+     * @param bool $createWhenMissing
+     * @return MultilangMenuNode
+     * @throws \DomainException
+     */
+    protected function getMenuNode($menu, $label = null, $createWhenMissing = false)
+    {
+        $menuNode = $this->dm->find(null, sprintf('%s/%s', $this->menuRoot, $menu));
+
+        if ($menuNode) {
+            return $menuNode;
+        }
+
+        if (!$createWhenMissing) {
+            throw new \DomainException(sprintf('Menu node %s does nog exists', $menu));
+        }
+
+        $menuNode = new MultilangMenuNode();
+        $menuNode->setName($menu);
+        $menuNode->setParent($this->dm->find(null, $this->menuRoot));
+        $this->dm->persist($menuNode);
+        if (isset($label)) {
+            if (is_array($label)) {
+                foreach ($label as $locale => $title) {
+                    $menuNode->setLabel($title);
+                    $this->dm->bindTranslation($menuNode, $locale);
+                }
+            } else {
+                $menuNode->setLabel($label);
+                $this->dm->bindTranslation($label, $this->defaultLocale);
+            }
+        } else {
+            $menuNode->setLabel(ucfirst($menu));
+            $this->dm->bindTranslation($menuNode, $this->defaultLocale);
+        }
+
+        return $menuNode;
+    }
+
+    /**
+     * @param $locale string
+     * @param $route string
+     * @return string
+     */
+    protected function fixLocaleRoute($locale, $route)
+    {
+        // Prefix with / when missing
+        $route = (0 !== strpos($route, '/')) ? '/' . $route : $route;
+        // Check if it starts with locale
+        if (substr($route, 0, 3) !== '/' . $locale) {
+            if ($route === '/') {
+                $route = '/' . $locale;
+            } else {
+                $route = '/' . $locale . $route;
+            }
+        }
+
+        return $route;
     }
 
     /**
