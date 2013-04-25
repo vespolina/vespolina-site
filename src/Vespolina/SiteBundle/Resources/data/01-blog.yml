@@ -1,0 +1,6 @@
+default:
+    posts:
+        new-website:
+            title: A brand new website
+            body: |
+                <p>Vespolina just got a brand new website. As a OpenSource project with Symfony components, we couldn't but use CMF to build this website</p>

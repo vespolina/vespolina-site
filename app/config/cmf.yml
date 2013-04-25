@@ -8,8 +8,68 @@ symfony_cmf_routing_extra:
         generic_controller: symfony_cmf_content.controller:indexAction
         controllers_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: symfony_cmf_content.controller:indexAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: symfony_cmf_blog.blog_controller:listAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Post: symfony_cmf_blog.blog_controller:viewPostAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Tag: symfony_cmf_blog.blog_controller:listAction
         templates_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: VespolinaSiteBundle:Page:default.html.twig
+            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: VespolinaSiteBundle:Blog:list.html.twig
+            Symfony\Cmf\Bundle\BlogBundle\Document\Post: VespolinaSiteBundle:Blog:post.html.twig
+
+symfony_cmf_routing_auto:
+    auto_route_mapping:
+        Symfony\Cmf\Bundle\BlogBundle\Document\Blog:
+            content_path:
+                routing_path:
+                    provider:
+                        name: specified
+                        path: cms/routes/en
+                    exists_action:
+                        strategy: use
+                    not_exists_action:
+                        strategy: throw_exception
+                namespace:
+                    provider:
+                        name: specified
+                        path: blog
+                    exists_action:
+                        strategy: use
+                    not_exists_action:
+                        strategy: create
+            content_name:
+                provider:
+                    name: content_method
+                    method: getName
+                exists_action:
+                    strategy: auto_increment
+                not_exists_action:
+                    strategy: create
+        Symfony\Cmf\Bundle\BlogBundle\Document\Post:
+            content_path:
+                routing_path:
+                    provider:
+                        name: content_object
+                        method: getBlog
+                    exists_action:
+                        strategy: use
+                    not_exists_action:
+                        strategy: throw_exception
+                date:
+                    provider:
+                        name: content_datetime
+                        method: getDate
+                    exists_action:
+                        strategy: use
+                    not_exists_action:
+                        strategy: create
+            content_name:
+                provider:
+                    name: content_method
+                    method: getTitle
+                exists_action:
+                    strategy: auto_increment
+                not_exists_action:
+                    strategy: create
 
 symfony_cmf_content:
     multilang:
@@ -18,3 +78,6 @@ symfony_cmf_content:
 symfony_cmf_menu:
     multilang:
         locales: %locales%
+
+symfony_cmf_blog:
+    blog_basepath: /cms/blog

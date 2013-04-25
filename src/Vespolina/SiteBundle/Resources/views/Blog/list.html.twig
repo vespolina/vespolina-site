@@ -1,0 +1,23 @@
+{% extends "VespolinaSiteBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            {% if tag %}
+                <div class="alert alert-info">
+                    {# @todo: Translation #}
+                    Showing posts with tag "{{ tag }}"
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            {% block posts %}
+                {% for post in posts %}
+                    {% include "VespolinaSiteBundle:Blog:list-post.html.twig" %}
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

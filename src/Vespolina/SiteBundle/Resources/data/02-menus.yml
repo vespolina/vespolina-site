@@ -10,6 +10,9 @@ main:
                 nl: Begin
                 de: Start
             content: homepage
+        blog:
+            label: Blog
+            route: /cms/routes/en/blog/default
         try:
             label:
                 en: Try

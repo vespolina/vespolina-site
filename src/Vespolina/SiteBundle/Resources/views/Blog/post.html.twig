@@ -1,0 +1,33 @@
+{% extends "VespolinaSiteBundle::layout.html.twig" %}
+{% block content %}
+<div class="row-fluid">
+    <div class="span6">
+        {% if prevPost %}
+            <a href="{{ path(prevPost, {'slug': prevPost.slug}) }}">&lt;&lt; {{ prevPost.title }}</a>
+        {% endif %}
+    </div>
+    <div class="span6" style="text-align: right">
+        {% if nextPost %}
+            <a href="{{ path(nextPost, {'slug': nextPost.slug}) }}">{{ nextPost.title }} &gt;&gt;</a>
+        {% endif %}
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <h1>{{ post.title }}</h1>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+        <p><i>{{ 'Posted on: %date%'|trans({ '%date%' : post.date.format('Y-m-d H:i:s') }) }}</i></p>
+    </div>
+    <div class="span6" style="text-align: right">
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        {{ post.body|raw }}
+    </div>
+</div>
+{% endblock %}
+

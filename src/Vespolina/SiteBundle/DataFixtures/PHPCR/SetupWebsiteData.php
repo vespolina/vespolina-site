@@ -22,6 +22,8 @@ use PHPCR\Util\NodeHelper;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
+use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
+use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
 use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode;
 use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route;
@@ -55,6 +57,9 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
 
     /** @var string */
     protected $menuRoot;
+
+    /** @var string */
+    protected $blogRoot;
 
     /** @var string */
     protected $defaultLocale;
@@ -93,6 +98,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         $this->routeRoot = $this->container->getParameter('symfony_cmf_routing_extra.routing_repositoryroot');
         $this->contentRoot = $this->container->getParameter('symfony_cmf_routing_extra.content_basepath');
         $this->menuRoot = $this->container->getParameter('symfony_cmf_menu.menu_basepath');
+        $this->blogRoot = $this->container->getParameter('symfony_cmf_blog.blog_basepath');
 
         $this->defaultLocale = $this->container->getParameter('kernel.default_locale');
         $this->availableLocales = $this->container->getParameter('doctrine_phpcr.odm.locales');
@@ -100,6 +106,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         try {
             $this->createRootNodes();
             $this->loadBasicData();
+            $this->loadBlogData();
             $this->loadMenuData();
         } catch (\Exception $e) {
             $this->output->writeln(sprintf('<error>Error while loading WebsiteData: %s</error>', $e->getMessage()));
@@ -114,11 +121,12 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
      */
     protected function createRootNodes()
     {
-        $this->output->writeln(sprintf('<info>Creating %s, %s and %s</info>', $this->routeRoot, $this->contentRoot, $this->menuRoot));
+        $this->output->writeln(sprintf('<info>Creating %s, %s, %s and %s</info>', $this->routeRoot, $this->contentRoot, $this->menuRoot, $this->blogRoot));
 
         NodeHelper::createPath($this->dm->getPhpcrSession(), $this->routeRoot);
         NodeHelper::createPath($this->dm->getPhpcrSession(), $this->contentRoot);
         NodeHelper::createPath($this->dm->getPhpcrSession(), $this->menuRoot);
+        NodeHelper::createPath($this->dm->getPhpcrSession(), $this->blogRoot);
 
         $this->dm->getPhpcrSession()->save();
     }
@@ -237,6 +245,31 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         $this->dm->flush();
     }
 
+    public function loadBlogData()
+    {
+        $blogRoot = $this->dm->find(null, $this->blogRoot);
+        $data = $this->loadYaml('01-blog.yml');
+
+        foreach ($data as $blogName => $blogData) {
+            $blog = new Blog();
+            $blog->setName($blogName);
+            $blog->setParent($blogRoot);
+
+            $this->dm->persist($blog);
+
+            foreach ($blogData['posts'] as $postData) {
+                $post = new Post();
+                $post->setBlog($blog);
+                $post->setTitle($postData['title']);
+                $post->setBody($postData['body']);
+
+                $this->dm->persist($post);
+            }
+        }
+
+        $this->dm->flush();
+    }
+
     protected function loadMenuData()
     {
         $data = $this->loadYaml('02-menus.yml');
@@ -274,6 +307,10 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                             throw new \DomainException(sprintf('Content "%s" doesn\'t exists', $itemData['content']));
                         }
                         $item->setContent($pages[$itemData['content']]);
+                    }
+
+                    if (isset($itemData['route'])) {
+                        $item->setRoute($itemData['route']);
                     }
 
                     if (isset($itemData['uri'])) {

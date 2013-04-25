@@ -44,7 +44,7 @@ class AppKernel extends Kernel
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
-            #Symfony
+            # Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -58,6 +58,9 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\SymfonyCmfBlockBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
+            new Symfony\Cmf\Bundle\BlogBundle\SymfonyCmfBlogBundle(),
+            new Symfony\Cmf\Bundle\RoutingAutoBundle\SymfonyCmfRoutingAutoBundle(),
+            # Application
             new Vespolina\SiteBundle\VespolinaSiteBundle(),
         );
 

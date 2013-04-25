@@ -68,6 +68,11 @@ sonata_admin:
                 label: Content
                 items:
                     - symfony_cmf_content.multilang.admin
+            blog:
+                label: Blog
+                items:
+                    - symfony_cmf_blog.admin
+                    - symfony_cmf_post.admin
             menu:
                 label: Menu
                 items:
