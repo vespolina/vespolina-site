@@ -13,7 +13,7 @@
             <tag name="kernel.event_subscriber"/>
             <argument type="service" id="router"/>
             <argument>%doctrine_phpcr.odm.locales%</argument>
-            <argument>%symfony_cmf_routing_extra.routing_repositoryroot%/%kernel.default_locale%</argument>
+            <argument>%cmf_routing.routing_repositoryroot%/%kernel.default_locale%</argument>
         </service>
     </services>
 

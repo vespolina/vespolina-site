@@ -80,9 +80,9 @@ doctrine_phpcr:
             SonataMediaBundle:
                 prefix: Sonata\MediaBundle\PHPCR
         locales:
-            en: ['en', 'de', 'nl']
-            nl: ['nl', 'en', 'de']
-            de: ['de', 'en', 'nl']
+            en: ['de', 'nl']
+            nl: ['en', 'de']
+            de: ['en', 'nl']
         image:
             imagine_filter: false
 

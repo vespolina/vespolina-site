@@ -26,7 +26,7 @@ use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
 use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode;
-use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route;
+use Symfony\Cmf\Bundle\RoutingBundle\Document\Route;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -95,10 +95,10 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
         /** @var $manager DocumentManager */
         $this->dm = $manager;
 
-        $this->routeRoot = $this->container->getParameter('symfony_cmf_routing_extra.routing_repositoryroot');
-        $this->contentRoot = $this->container->getParameter('symfony_cmf_routing_extra.content_basepath');
-        $this->menuRoot = $this->container->getParameter('symfony_cmf_menu.menu_basepath');
-        $this->blogRoot = $this->container->getParameter('symfony_cmf_blog.blog_basepath');
+        $this->routeRoot = $this->container->getParameter('cmf_routing.routing_repositoryroot');
+        $this->contentRoot = $this->container->getParameter('cmf_routing.content_basepath');
+        $this->menuRoot = $this->container->getParameter('cmf_menu.menu_basepath');
+        $this->blogRoot = $this->container->getParameter('cmf_blog.blog_basepath');
 
         $this->defaultLocale = $this->container->getParameter('kernel.default_locale');
         $this->availableLocales = $this->container->getParameter('doctrine_phpcr.odm.locales');
@@ -286,8 +286,6 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                     $item = new MultilangMenuNode();
                     $item->setName($itemName);
                     $item->setParent($parentItem);
-
-                    // TODO submenus
 
                     $dm->persist($item);
 

@@ -1,22 +1,22 @@
-symfony_cmf_routing_extra:
+cmf_routing:
     chain:
         routers_by_id:
-            symfony_cmf_routing_extra.dynamic_router: 20
+            cmf_routing.dynamic_router: 20
             router.default: 100
     dynamic:
         enabled: true
-        generic_controller: symfony_cmf_content.controller:indexAction
+        generic_controller: cmf_content.controller:indexAction
         controllers_by_class:
-            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: symfony_cmf_content.controller:indexAction
-            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: symfony_cmf_blog.blog_controller:listAction
-            Symfony\Cmf\Bundle\BlogBundle\Document\Post: symfony_cmf_blog.blog_controller:viewPostAction
-            Symfony\Cmf\Bundle\BlogBundle\Document\Tag: symfony_cmf_blog.blog_controller:listAction
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: cmf_content.controller:indexAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: cmf_blog.blog_controller:listAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Post: cmf_blog.blog_controller:viewPostAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Tag: cmf_blog.blog_controller:listAction
         templates_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: VespolinaSiteBundle:Page:default.html.twig
             Symfony\Cmf\Bundle\BlogBundle\Document\Blog: VespolinaSiteBundle:Blog:list.html.twig
             Symfony\Cmf\Bundle\BlogBundle\Document\Post: VespolinaSiteBundle:Blog:post.html.twig
 
-symfony_cmf_routing_auto:
+cmf_routing_auto:
     auto_route_mapping:
         Symfony\Cmf\Bundle\BlogBundle\Document\Blog:
             content_path:
@@ -71,13 +71,14 @@ symfony_cmf_routing_auto:
                 not_exists_action:
                     strategy: create
 
-symfony_cmf_content:
+cmf_content:
     multilang:
         locales: %locales%
 
-symfony_cmf_menu:
+cmf_menu:
     multilang:
         locales: %locales%
+    allow_empty_items: true
 
-symfony_cmf_blog:
+cmf_blog:
     blog_basepath: /cms/blog

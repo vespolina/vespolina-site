@@ -12,10 +12,15 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        main:
+            pattern: ^/
+            anonymous: ~
+
         login:
             security: false
 
         secured_area:
+            pattern: ^/admin
             anonymous: ~
 
     providers:
