@@ -1,34 +1,93 @@
 {% extends 'VespolinaSiteBundle::layout.html.twig' %}
 
 {% block content %}
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-        <h1>{{ cmfMainContent.title }}</h1>
-        <p class="lead">{{ cmfMainContent.body|raw }}</p>
-        <a class="btn btn-large btn-success" href="#">Get started today</a>
-    </div>
 
-    <hr>
+    <section role="intro">
+        <div class="container">
 
-    <div class="row-fluid">
-        <h2>{% trans %}Contributors{% endtrans %}</h2>
-        {% include 'VespolinaSiteBundle:Default:_contributors.html.twig' %}
-    </div>
+            <div class="text">
+                <h1>{{ cmfMainContent.title }}</h1>
+                <p>{{ cmfMainContent.body|raw }}</p>
+            </div>
+            <img src="{{ asset('bundles/vespolinasite/img/home-demo.png') }}" />
+        </div>
+    </section>
 
-    <hr>
+    <section role="usp">
 
-    <!-- Example row of columns -->
-    <div class="row-fluid">
-        {% if cmfMainContent.additionalInfoBlock and cmfMainContent.additionalInfoBlock.children %}
-            {% for childBlock in cmfMainContent.additionalInfoBlock.children %}
-                <div class="span4">
-                    <h2>{{ childBlock.title }}</h2>
-                    {{ childBlock.content|raw }}
-                    {% if childBlock.settings.route %}
-                        <p><a class="btn" href="{{ path(childBlock.settings.route) }}">View details &raquo;</a></p>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+        <div class="container">
+
+            <ul>
+
+                <li class="item">
+                    <div class="top">
+                        <span class="image flexible">&nbsp;</span>
+                    </div>
+                    <div class="inner">
+                        <h3>Flexibility</h3>
+                        <p>Choose what components you want to use</p>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="top">
+                        <span class="image configurable">&nbsp;</span>
+                    </div>
+                    <div class="inner">
+                        <h3>Configurability</h3>
+                        <p>Configure your process, we don't force a specific commerce process.</p>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="top">
+                        <span class="image reusable">&nbsp;</span>
+                    </div>
+                    <div class="inner">
+                        <h3>Reusability</h3>
+                        <p>Stop re&iuml;nventing the wheel, build it once</p>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="top">
+                        <span class="image expandable">&nbsp;</span>
+                    </div>
+                    <div class="inner">
+                        <h3>Expandable</h3>
+                        <p>Need some specific business rules? Just plug it in.</p>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+    <section role="info">
+        <div class="container">
+            <div class="row-fluid">
+                {% if cmfMainContent.additionalInfoBlock and cmfMainContent.additionalInfoBlock.children %}
+                    {% for childBlock in cmfMainContent.additionalInfoBlock.children %}
+                        <article class="span6">
+                            <h4>{{ childBlock.title }}</h4>
+                            {{ childBlock.content|raw }}
+                            {% if childBlock.settings.route is defined %}
+                                <p><a class="btn" href="{{ path(childBlock.settings.route) }}">View details &raquo;</a></p>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section role="contributors">
+        <div class="container">
+            <h4>{% trans %}Contributors{% endtrans %}</h4>
+            {% include 'VespolinaSiteBundle:Default:_contributors.html.twig' %}
+        </div>
+    </section>
+
 {% endblock %}

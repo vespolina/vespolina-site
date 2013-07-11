@@ -51,6 +51,8 @@ section[role="intro"] {
         float: left;
         width: 60%;
         height: 420px;
+        position: relative;
+        top: 55px;
     }
 }
 
@@ -59,15 +61,51 @@ section[role="usp"] {
     background: $headerBackground;
     ul {
         list-style: none;
-        margin-top: 25px;
+        margin: 25px 0 0 0;
+
         li {
             float: left;
-            width: 25%;
+            width: 20%;
+            margin-right: 5%;
             .inner {
-                margin: 0 15%;
+                margin: 0 0;
+            }
+            .top {
+                .image {
+                    background: transparent url('../img/home-usp-sprite.png') no-repeat;
+                    display: block;
+                    width:  105px;
+                    height: 105px;
+                    margin: 0 auto;
+                    &.flexible { background-position: 0 0; }
+                    &.configurable { background-position: -106px 0; }
+                    &.reusable { background-position: -212px 0; }
+                    &.expandable { background-position: -319px 0; }
+                }
             }
         }
     }
+}
+
+section[role="contributors"] {
+    .container {
+        margin-top: 20px;
+        .contributor {
+            display: block;
+            float: left;
+            width: 80px;
+            height: 110px;
+            margin-right: 20px;
+            text-align: center;
+            img {
+                border-radius: 40px;
+            }
+        }
+    }
+}
+
+section[role="info"] {
+    margin-top: 2em;
 }
 
 .container > hr {

@@ -1,10 +1,14 @@
 {% extends 'VespolinaSiteBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1>{{ cmfMainContent.title }}</h1>
-    {{ cmfMainContent.body|raw }}
 
-    {% if cmfMainContent.additionalInfoBlock %}
-        {{ sonata_block_render(cmfMainContent.additionalInfoBlock) }}
-    {% endif %}
+    <div class="container">
+
+        <h1>{{ cmfMainContent.title }}</h1>
+        {{ cmfMainContent.body|raw }}
+
+        {% if cmfMainContent.additionalInfoBlock %}
+            {{ sonata_block_render(cmfMainContent.additionalInfoBlock) }}
+        {% endif %}
+    </div>
 {% endblock %}

@@ -67,13 +67,13 @@ sonata_admin:
             content:
                 label: Content
                 items:
-                    - symfony_cmf_content.multilang.admin
+                    - cmf_content.multilang.admin
             blog:
                 label: Blog
                 items:
-                    - symfony_cmf_blog.admin
-                    - symfony_cmf_post.admin
+                    - cmf_blog.admin
+                    - cmf_post.admin
             menu:
                 label: Menu
                 items:
-                    - symfony_cmf_menu.multilang.admin
+                    - cmf_menu.multilang.admin

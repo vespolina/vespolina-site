@@ -16,29 +16,14 @@ homepage:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Scalable Ecommerce
-                    de: Skalierbare Ecommerce
                 content:
-                    en: Dummy text
-                settings:
-                    route: /cms/routes/en/try
+                    en: We need some text here
             business-process:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Business Process at it's core
-                    de: Business Process an ihr ist Kern
                 content:
-                    en: Dummy text
-                settings:
-                    route: /cms/routes/en/community
-            open-source:
-                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
-                title:
-                    en: Open source
-                    de: Open Source
-                content:
-                    en: Dummy text
-                settings:
-                    route: /cms/routes/en/try
+                    en: And here too
 try:
     route: /try
     title:

@@ -40,73 +40,17 @@
         </div>
     </section>
 
-    <section role="intro">
-        <div class="container">
-
-            <div class="text">
-                <h1>Titel</h1>
-                <p>Aliquam et nisl vel ligula consectetuer suscipit. Morbi euismod enim eget neque.</p>
-            </div>
-            <img src="#" />
-        </div>
-    </section>
-
-    <section role="usp">
-
-        <div class="container">
-
-            <ul>
-
-                {% for i in 0..3 %}
-                <li class="item">
-                    <figure>
-                        <img src="#" width="100" height="100" />
-                    </figure>
-                    <div class="inner">
-                        <h3>USP Title</h3>
-                        <p>Cras rutrum pulvinar tellus</p>
-                    </div>
-                </li>
-                {% endfor %}
-
-            </ul>
-
-        </div>
-
-    </section>
-
-    <div class="container">
-        <div class="switcher pull-right">
-            {{ locale_switcher() }}
-        </div>
-        <div class="masthead">
-            <h3 class="muted">Vespolina Ecommerce</h3>
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <div class="container">
-                        {{ knp_menu_render('main') }}
-                        {#
-                        <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Downloads</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                        #}
-                    </div>
-                </div>
-            </div><!-- /.navbar -->
-        </div>
+    <section role="content">
 
         {% block content %}No content defined{% endblock %}
 
-        <div class="footer">
+    </section> <!-- /container -->
+
+    <footer>
+        <div class="container">
             <p>&copy; Company 2013</p>
         </div>
-
-    </div> <!-- /container -->
+    </footer>
 
 
     <script src="{{ asset('bundles/vespolinasite/js/bootstrap/jquery.js') }}"></script>
