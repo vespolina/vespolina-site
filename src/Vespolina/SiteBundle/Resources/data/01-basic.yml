@@ -1,14 +1,10 @@
 homepage:
     route:
         en: /
-        nl: /
-        de: /
     title:
-        en: English Start
-        nl: Nederlandse Start
-        de: Deutsche Start
+        en: Decoupled ecommerce framework for developers
     body:
-        en: <p>An OpenSource, Decoupled, e-commerce framework</p>
+        en: <p>An OpenSource ecommerce framework, attracts both you as a developer as your manager!</p>
     template: VespolinaSiteBundle:Page:home.html.twig
     additionalInfoBlock:
         children:
@@ -28,8 +24,6 @@ try:
     route: /try
     title:
         en: Available demo systems
-        de: verfügbare Systemressourcen
-        nl: Beschikbare demo systemen
     body: |
         <p>Below, you find a list of demo systems. This is still a work in progress, stuff might still break.</p>
         <p>All information you enter into the demo systems will not lead to any purchase as data is refreshed every day.</p>
@@ -39,8 +33,6 @@ try:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Beverages, standard store, United States
-                    nl: Dranken, standaard shop, USA
-                    de: Getränke, Standard-Shop, Vereinigte Staaten
                 content:
                     en: <p>A typical store for beverages using the sandbox with taxation rules for US (state Oregon). Default product view is tiled. It's based on a normal checkout B2C process with physical fulfillment.</p>
                 settings:
@@ -49,8 +41,6 @@ try:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Beverages, standard store, Belgium
-                    nl: Dranken, standaard shop, België
-                    de: Getränke, Standard-Shop, Belgien
                 content:
                     en: <p>A typical store for beverages using the sandbox with taxation rules for Belgium (eg. VAT taxation). Default product view is a small list (optimized for small product lists). It's based on a normal B2C checkout process with physical fulfillment.</p>
                 settings:
@@ -59,8 +49,6 @@ try:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Daily deal Beverages, France
-                    nl: Dagelijkse aanbieding dranken, Frankrijk
-                    de: Tagesangebot Getränke, Frankreich
                 content:
                     en: <p>A daily deal store (one product a day) using the sandbox with taxation rules for France (eg. VAT taxation). It's based on a normal checkout B2C process with physical fulfillment.</p>
                 settings:
@@ -69,8 +57,6 @@ community:
     route: /community
     title:
         en: Community
-        de: Community
-        nl: Community
     body: |
         <p>Below, you find a list of demo systems. This is still a work in progress, stuff might still break.</p>
         <p>All information you enter into the demo systems will not lead to any purchase as data is refreshed every day.</p>

@@ -71,7 +71,7 @@
                 {% if cmfMainContent.additionalInfoBlock and cmfMainContent.additionalInfoBlock.children %}
                     {% for childBlock in cmfMainContent.additionalInfoBlock.children %}
                         <article class="span6">
-                            <h4>{{ childBlock.title }}</h4>
+                            <h3>{{ childBlock.title }}</h3>
                             {{ childBlock.content|raw }}
                             {% if childBlock.settings.route is defined %}
                                 <p><a class="btn" href="{{ path(childBlock.settings.route) }}">View details &raquo;</a></p>
@@ -83,9 +83,13 @@
         </div>
     </section>
 
+    <div class="container">
+        <hr class="line"/>
+    </div>
+
     <section role="contributors">
         <div class="container">
-            <h4>{% trans %}Contributors{% endtrans %}</h4>
+            <h3>{% trans %}Contributors{% endtrans %}</h3>
             {% include 'VespolinaSiteBundle:Default:_contributors.html.twig' %}
         </div>
     </section>

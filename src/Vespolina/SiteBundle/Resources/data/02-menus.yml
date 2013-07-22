@@ -1,14 +1,10 @@
 main:
     label:
         en: Main menu
-        de: Hauptmenü
-        nl: Hoofdmenu
     children:
         start:
             label:
                 en: Start
-                nl: Begin
-                de: Start
             content: homepage
         blog:
             label: Blog
@@ -16,18 +12,13 @@ main:
         try:
             label:
                 en: Try
-                nl: Probeer
-                de: Versuch
-            content: try
-        google:
-            label: Google
             uri:
-                en: http://www.google.com
-                de: http://www.google.de
-                nl: http://www.google.nl
+                en: http://try.vespolina.org
+        docs:
+            label: Documentation
+            uri:
+                en: http://docs.vespolina.org
         community:
             label:
                 en: Community
-                nl: Community
-                de: Community
             content: community

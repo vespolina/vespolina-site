@@ -48,8 +48,7 @@ section[role="intro"] {
         }
     }
     .container > img {
-        float: left;
-        width: 60%;
+        float: right;
         height: 420px;
         position: relative;
         top: 55px;
@@ -109,7 +108,7 @@ section[role="info"] {
 }
 
 .container > hr {
-    margin: 60px 0;
+    margin: 60px 0 0 0;
 }
 
 /* Main marketing message and sign up button */

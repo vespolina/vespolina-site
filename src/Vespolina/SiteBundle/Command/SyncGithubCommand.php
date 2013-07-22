@@ -41,12 +41,12 @@ class SyncGithubCommand extends ContainerAwareCommand
 		$contributors = array();
 		$repositories = $this->getGitRepositories();
 		
-		foreach($repositories as $repository) {
+		foreach ($repositories as $repository) {
 			
 			$name = $repository['name'];
 			$repoContributors = $this->client->api('repo')->contributors('vespolina', $name);
 
-         	foreach($repoContributors as $contributor) {
+         	foreach ($repoContributors as $contributor) {
 				if (!array_key_exists($contributor['login'], $contributor )) {
 					$contributors[$contributor['login']] = $contributor;
 			    }
@@ -63,7 +63,7 @@ class SyncGithubCommand extends ContainerAwareCommand
 		$retrievedRepositories =  $this->client->api('user')->repositories('vespolina');
 		$repositories = array();
 
-		foreach($retrievedRepositories as $repo) {
+		foreach ($retrievedRepositories as $repo) {
 			if (!$this->isIgnoredRepository($repo['name'])) {
 	            $repositories[] = $repo;
 			}
@@ -87,17 +87,17 @@ class SyncGithubCommand extends ContainerAwareCommand
         $html = '';
         $twigFile = __DIR__ . '/../Resources/views/Default/_contributors.html.twig';
 
-        foreach($contributors as $contributor) {
+        foreach ($contributors as $contributor) {
 
             if (array_key_exists('name', $contributor)) {
                 $name = $contributor['name'];
-            }else {
+            } else {
                 $name = $contributor['login'];
             }
+
             $gravatarImageUrl = 'http://www.gravatar.com/avatar/' . $contributor['gravatar_id'] ;
             $gitUrl = 'http://www.github.com/' . $contributor['login'];
-            $html .=
-            '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a></span>' . "\r\n";
+            $html .= '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a><br />' . $name . '</span>' . PHP_EOL;
 
         }
 
