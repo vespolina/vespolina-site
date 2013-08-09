@@ -20,7 +20,9 @@ body {
 
 section[role="heading"] {
     background-color: $headerBackground;
-    height: 70px;
+    .logo {
+        float: left;
+    }
     nav {
         float: right;
         margin-top: 1em;
