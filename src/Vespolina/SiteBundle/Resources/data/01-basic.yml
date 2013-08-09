@@ -30,29 +30,32 @@ try:
     additionalInfoBlock:
         children:
             standard-us:
-                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                class: Vespolina\SiteBundle\Document\TryBlock
                 title:
                     en: Beverages, standard store, United States
                 content:
                     en: <p>A typical store for beverages using the sandbox with taxation rules for US (state Oregon). Default product view is tiled. It's based on a normal checkout B2C process with physical fulfillment.</p>
-                settings:
-                    url: http://try.vespolina.org/standard-beverages-store-us/web/app.php
+                extra:
+                    url:
+                        en: http://try.vespolina.org/standard-beverages-store-us/web/app.php
             standard-be:
-                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                class: Vespolina\SiteBundle\Document\TryBlock
                 title:
                     en: Beverages, standard store, Belgium
                 content:
                     en: <p>A typical store for beverages using the sandbox with taxation rules for Belgium (eg. VAT taxation). Default product view is a small list (optimized for small product lists). It's based on a normal B2C checkout process with physical fulfillment.</p>
-                settings:
-                    url: http://try.vespolina.org/standard-beverages-store-be/web/app.php
+                extra:
+                    url:
+                        en: http://try.vespolina.org/standard-beverages-store-be/web/app.php
             daily-france:
-                class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
+                class: Vespolina\SiteBundle\Document\TryBlock
                 title:
                     en: Daily deal Beverages, France
                 content:
                     en: <p>A daily deal store (one product a day) using the sandbox with taxation rules for France (eg. VAT taxation). It's based on a normal checkout B2C process with physical fulfillment.</p>
-                settings:
-                    url: http://try.vespolina.org/daily-deal-beverages-store-fr/web/app.php
+                extra:
+                    url:
+                        en: http://try.vespolina.org/daily-deal-beverages-store-fr/web/app.php
 community:
     route: /community
     title:

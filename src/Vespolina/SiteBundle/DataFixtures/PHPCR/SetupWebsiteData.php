@@ -329,8 +329,8 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                         $dm->bindTranslation($item, $locale);
                     }
 
-                    if (isset($menudata['children'])) {
-                        $createMenuItems($item, $menuData['children']);
+                    if (isset($itemData['children'])) {
+                        $createMenuItems($item, $itemData['children']);
                     }
                 }
             };
@@ -393,8 +393,19 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 }
             }
 
-            if (isset($child['settings'])) {
-                $block->setSettings($child['settings']);
+            if (isset($child['extra'])) {
+                foreach ($child['extra'] as $key => $value) {
+                    if (is_array($value)) {
+                        if (!$this->dm->isDocumentTranslatable($block)) {
+                            throw new \DomainException(sprintf('Block %s isn\'t translatable', $childName));
+                        }
+                        foreach ($value as $locale => $content) {
+                            $localeData[$locale][$key] = $content;
+                        }
+                    } else {
+                        $block->{'set' . ucfirst($key)}($value);
+                    }
+                }
             }
 
             $this->dm->persist($block);

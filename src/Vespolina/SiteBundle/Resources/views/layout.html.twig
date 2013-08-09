@@ -25,9 +25,12 @@
             <a href="/" class="logo">
                 <img src="{{ asset('bundles/vespolinasite/img/logo.png') }}" title="{{ 'Homepage'|trans }}" />
             </a>
-            <nav class="pull-right">
-                {{ knp_menu_render('main') }}
-            </nav>
+        </div>
+    </section>
+
+    <section role="navigation">
+        <div class="container">
+            {{ knp_menu_render('main', {'template' : 'VespolinaSiteBundle:Menu:main.html.twig', 'depth': 1 }) }}
         </div>
     </section>
 

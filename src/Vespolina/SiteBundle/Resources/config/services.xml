@@ -15,6 +15,16 @@
             <argument>%doctrine_phpcr.odm.locales%</argument>
             <argument>%cmf_routing.routing_repositoryroot%/%kernel.default_locale%</argument>
         </service>
+
+        <service id="vespolina_site.block.try" class="Symfony\Cmf\Bundle\BlockBundle\Block\SimpleBlockService">
+            <tag name="sonata.block" />
+            <argument>vespolina_site.block.try</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="sonata.block.renderer" />
+            <call method="setTemplate">
+                <argument>VespolinaSiteBundle:Block:try.html.twig</argument>
+            </call>
+        </service>
     </services>
 
 </container>

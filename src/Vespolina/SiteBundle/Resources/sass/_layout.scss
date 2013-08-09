@@ -23,16 +23,28 @@ section[role="heading"] {
     .logo {
         float: left;
     }
-    nav {
-        float: right;
-        margin-top: 1em;
-        li {
-            float: left;
-            a {
-                padding: 3px 10px;
-                line-height: 2em;
+}
+
+section[role="navigation"] {
+    background-color: darken($headerBackground, 20%);
+    .container {
+        position: relative;
+        > ul {
+            position: absolute;
+            top: -50px;
+            left: 200px; // Depending on logo size
+            li {
+                list-style: none;
+                float: left;
+                a {
+                    padding: 3px 10px;
+                    line-height: 2em;
+                }
             }
         }
+    }
+    .sub {
+        display: none;
     }
 }
 

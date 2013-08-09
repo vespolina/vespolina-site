@@ -1,0 +1,8 @@
+<div class="try">
+    <h3>{{ block.title }}</h3>
+    <p>{{ block.content|raw }}</p>
+
+    {% if block.url %}
+        <a class="btn btn-primary" href="{{ block.url }}">Try</a>
+    {% endif %}
+</div>

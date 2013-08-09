@@ -28,6 +28,8 @@ sonata_block:
             settings:
                 id: '/'
             contexts:   [admin]
+        vespolina_site.block.try:
+            contexts: [admin]
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]
