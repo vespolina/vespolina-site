@@ -15,17 +15,17 @@ security:
         main:
             pattern: ^/
             anonymous: ~
+            http_basic:
+                realm: "Vespolina admin"
 
         login:
             security: false
-
-        secured_area:
-            pattern: ^/admin
-            anonymous: ~
 
     providers:
         in_memory:
             memory:
                 users:
-                    user:  { password: admin, roles: [ 'ROLE_USER' ] }
-                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: %admin_password%, roles: [ 'ROLE_SUPER_ADMIN' ] }
+
+    access_control:
+        - { path: '^/([a-z]{2}/)?admin', roles: ROLE_ADMIN }

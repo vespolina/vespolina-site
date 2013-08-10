@@ -82,3 +82,8 @@ cmf_menu:
 
 cmf_blog:
     blog_basepath: /cms/blog
+
+cmf_block:
+    multilang:
+        locales: %locales%
+        use_sonata_admin: true

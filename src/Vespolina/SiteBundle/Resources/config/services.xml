@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="vespolina_site.listener.kernel_subscriber.class">Vespolina\SiteBundle\Listener\KernelSubscriber</parameter>
+        <parameter key="vespolina_site.block.try_admin.class">Vespolina\SiteBundle\Admin\Block\TryAdmin</parameter>
     </parameters>
 
     <services>
@@ -23,6 +24,26 @@
             <argument type="service" id="sonata.block.renderer" />
             <call method="setTemplate">
                 <argument>VespolinaSiteBundle:Block:try.html.twig</argument>
+            </call>
+        </service>
+
+        <service id="vespolina_site.block.try_admin" class="%vespolina_site.block.try_admin.class%">
+            <tag name="sonata.admin" manager_type="doctrine_phpcr" group="dashboard.group_content" label_catalogue="VespolinaSiteBundleAdmin" label="Try block" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument/>
+            <argument>Vespolina\SiteBundle\Document\TryBlock</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <argument>%cmf_block.multilang.locales%</argument>
+
+            <call method="setRouteBuilder">
+                <argument type="service" id="sonata.admin.route.path_info_slashes" />
+            </call>
+
+            <call method="setContentRoot">
+                <argument>%cmf_block.content_basepath%</argument>
+            </call>
+
+            <call method="setTranslationDomain">
+                <argument>VespolinaSiteBundleAdmin</argument>
             </call>
         </service>
     </services>

@@ -104,17 +104,6 @@ section[role="usp"] {
 section[role="contributors"] {
     .container {
         margin-top: 20px;
-        .contributor {
-            display: block;
-            float: left;
-            width: 80px;
-            height: 110px;
-            margin-right: 20px;
-            text-align: center;
-            img {
-                border-radius: 40px;
-            }
-        }
     }
 }
 
@@ -127,6 +116,18 @@ section[role="content"] {
     min-height: 240px;
     &.home {
         padding-top: 0;
+    }
+}
+
+.contributor {
+    display: block;
+    float: left;
+    width: 80px;
+    height: 110px;
+    margin-right: 20px;
+    text-align: center;
+    img {
+        border-radius: 40px;
     }
 }
 

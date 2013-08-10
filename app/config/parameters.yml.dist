@@ -16,3 +16,5 @@ parameters:
     secret:            "BestSecretEver"
 
     locales: [en,de,nl]
+
+    admin_password: ~

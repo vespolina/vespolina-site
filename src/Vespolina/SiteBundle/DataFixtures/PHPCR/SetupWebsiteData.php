@@ -1,15 +1,4 @@
 <?php
-/**
- * This file and its content is copyright of Beeldspraak Website Creators BV - (c) Beeldspraak 2012. All rights reserved.
- * Any redistribution or reproduction of part or all of the contents in any form is prohibited.
- * You may not, except with our express written permission, distribute or commercially exploit the content.
- *
- * @author      Beeldspraak <info@beeldspraak.com>
- * @copyright   Copyright 2012, Beeldspraak Website Creators BV
- * @link        http://beeldspraak.com
- *
- */
-
 namespace Vespolina\SiteBundle\DataFixtures\PHPCR;
 
 
@@ -25,6 +14,7 @@ use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
+use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenu;
 use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode;
 use Symfony\Cmf\Bundle\RoutingBundle\Document\Route;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
@@ -276,10 +266,14 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
     {
         $data = $this->loadYaml('02-menus.yml');
 
-        foreach ($data as $menu => $menuData) {
+        foreach ($data as $name => $menuData) {
             $label = isset($menuData['label']) ? $menuData['label'] : null;
-            $menuNode = $this->getMenuNode($menu, $label, true);
-            $menuNode->setChildrenAttributes(array('class' => 'nav'));
+            $menu = new MultilangMenu();
+            $menu->setName($name);
+            $menu->setLabel($label);
+            $menu->setChildrenAttributes(array('class' => 'nav'));
+            $menu->setParent($this->dm->find(null, $this->menuRoot));
+            $this->dm->persist($menu);
 
             $dm = $this->dm;
             $pages = $this->pages;
@@ -338,7 +332,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             };
 
             if (isset($menuData['children'])) {
-                $createMenuItems($menuNode, $menuData['children']);
+                $createMenuItems($menu, $menuData['children']);
             }
         }
 

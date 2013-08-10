@@ -65,6 +65,7 @@ community:
     route: /community
     title:
         en: Community
+    template: VespolinaSiteBundle:Page:community.html.twig
     body: |
         <p>We can't build Vespolina without a community. There are a few
         places where you can find us:</p>

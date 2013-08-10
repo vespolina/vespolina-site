@@ -1,6 +1,5 @@
 main:
-    label:
-        en: Main menu
+    label: Main menu
     children:
         start:
             label:

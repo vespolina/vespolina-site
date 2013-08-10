@@ -1,0 +1,18 @@
+breadcrumb:
+    link_try_block_list: Back to TryBlock list
+
+filter:
+    label_title: Title
+    label_name: Name
+
+list:
+    label_id: ID
+    label_title: Title
+
+form:
+    group_general: General
+    label_parent_document: Parent
+    label_name: Name
+    label_title: Title
+    label_content: Content
+    label_url: URL

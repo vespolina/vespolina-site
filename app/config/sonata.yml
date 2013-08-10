@@ -57,6 +57,12 @@ sonata_doctrine_phpcr_admin:
         Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent:
             valid_children:
                 - all
+        Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock:
+            valid_children:
+                - all
+        Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock:
+            valid_children:
+                - all
 
 sonata_admin:
     title: Vespolina Project Backend
@@ -70,6 +76,8 @@ sonata_admin:
                 label: Content
                 items:
                     - cmf_content.multilang.admin
+                    - cmf_block.multilang.simple_admin
+                    - vespolina_site.block.try_admin
             blog:
                 label: Blog
                 items:
@@ -78,4 +86,4 @@ sonata_admin:
             menu:
                 label: Menu
                 items:
-                    - cmf_menu.multilang.admin
+                    - cmf_menu.multilang.node_admin

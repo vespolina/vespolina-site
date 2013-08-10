@@ -18,7 +18,7 @@
             <div class="span4">
                 <h4>Latest</h4>
                 <ul>
-                {% for post in posts %}
+                {% for post in posts|slice(0,10) %}
                     <li><a href="{{ path(post) }}">{{ post.title }}</a></li>
                 {% endfor %}
                 </ul>
