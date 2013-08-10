@@ -6,6 +6,9 @@ main:
             label:
                 en: Start
             content: homepage
+        get-started:
+            label: Get started
+            content: get-started
         blog:
             label: Blog
             route: /cms/routes/en/blog/default
@@ -13,16 +16,6 @@ main:
             label:
                 en: Try
             route: /cms/routes/en/try
-            children:
-                beverages-usa:
-                    label: Beverages, standard store, United States
-                    uri: http://try.vespolina.org/standard-beverages-store-us/web/app.php
-                beverages-belgium:
-                    label: Beverages, standard store, Belgium
-                    uri: http://try.vespolina.org/standard-beverages-store-be/web/app.php
-                daily-deal-france:
-                    label: Daily deal Beverages, France
-                    uri: http://try.vespolina.org/daily-deal-beverages-store-fr/web/app.php
         docs:
             label: Documentation
             uri:

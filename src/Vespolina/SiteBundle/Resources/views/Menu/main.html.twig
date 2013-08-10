@@ -9,12 +9,26 @@
 {% endmacro %}
 
 {% block root %}
-    {% set listAttributes = { 'class' : 'left' } %}
+    {% set listAttributes = { 'class' : 'main' } %}
     {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
-        <ul{{ _self.attributes(listAttributes) }}>
-            {{ block('children') -}}
-        </ul>
         {% set currentItem = item %}
+
+        <ul{{ _self.attributes(listAttributes) }}>
+            {% for item in currentItem.children %}
+                {% set currentOptions = options %}
+                {% set currentSubItem = item %}
+                {# update the depth for children #}
+                {% if options.depth is not none %}
+                    {% set options = currentOptions|merge({'depth': currentOptions.depth - 1}) %}
+                {% endif %}
+                {% set attributes = {'class': 'test'} %}
+                {% set _ = attribute(item, 'setAttributes', [{ 'data-name': item.name }]) %}{# This sucks, but can't get it work without overriding item otherwise #}
+                {{ block('item') -}}
+                {# restore current variables #}
+                {% set item = currentSubItem %}
+                {% set options = currentOptions %}
+            {% endfor %}
+        </ul>
 
         <div class="submenus">
             {% for item in currentItem.children %}

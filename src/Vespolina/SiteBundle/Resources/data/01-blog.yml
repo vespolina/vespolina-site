@@ -1,6 +1,9 @@
 default:
     posts:
-        new-website:
-            title: A brand new website
+        update:
+            title: An update from Vespolina
+            publishStartDate: '2013-08-10'
             body: |
-                <p>Vespolina just got a brand new website. As a OpenSource project with Symfony components, we couldn't but use CMF to build this website</p>
+                <p>Vespolina isn't standing still, a lot has changed in the
+                last year. In this post we want to explain what has been done and
+                what is going on at the moment</p>

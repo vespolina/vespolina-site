@@ -262,6 +262,8 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 $post->setBlog($blog);
                 $post->setTitle($postData['title']);
                 $post->setBody($postData['body']);
+                $post->setPublishStartDate(new \DateTime($postData['publishStartDate']));
+                $post->setPublishable(true);
 
                 $this->dm->persist($post);
             }

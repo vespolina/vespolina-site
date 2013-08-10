@@ -20,6 +20,11 @@ homepage:
                     en: Business Process at it's core
                 content:
                     en: And here too
+get-started:
+    route: /get-started
+    title: Getting started
+    body: |
+        <p>Check back later</p>
 try:
     route: /try
     title:
@@ -61,5 +66,9 @@ community:
     title:
         en: Community
     body: |
-        <p>Below, you find a list of demo systems. This is still a work in progress, stuff might still break.</p>
-        <p>All information you enter into the demo systems will not lead to any purchase as data is refreshed every day.</p>
+        <p>We can't build Vespolina without a community. There are a few
+        places where you can find us:</p>
+        <ul>
+            <li><a href="http://github.com/vespolina">Github</a></li>
+            <li><a href="irc://chat.freenode.net#vespolina">IRC</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/vespolina-dev">Google Groups</a></li>

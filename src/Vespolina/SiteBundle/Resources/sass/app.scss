@@ -1,6 +1,7 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import 'colors';
 @import 'layout';
+@import 'typography';
 
 .switcher {
     width: 220px;
@@ -18,18 +19,4 @@
 
 .contributor {
     margin-right: 0.5em;
-}
-
-h1, h2, h3, h4, h5 {
-    color: #101010;
-    font-family: 'Open Sans', 'sans-serif';
-}
-
-h1 {
-    font-size: 32px;
-}
-
-h3 {
-    font-weight: normal;
-    font-size: 19px;
 }
