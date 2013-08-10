@@ -74,3 +74,6 @@ fos_js_routing:
 cmf_tree:
     resource: .
     type: 'cmf_tree'
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

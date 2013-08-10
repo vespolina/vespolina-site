@@ -29,3 +29,5 @@ security:
 
     access_control:
         - { path: '^/([a-z]{2}/)?admin', roles: ROLE_ADMIN }
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }

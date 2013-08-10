@@ -58,6 +58,10 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Symfony\Cmf\Bundle\BlogBundle\CmfBlogBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
+            # Trsteel
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
+            # Helios
+            new FM\ElfinderBundle\FMElfinderBundle(),
             # Application
             new Vespolina\SiteBundle\VespolinaSiteBundle(),
         );

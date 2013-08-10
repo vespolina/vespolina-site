@@ -28,7 +28,8 @@
         "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*@dev",
         "sonata-project/media-bundle": "2.2.*@dev",
-        "Trsteel/ckeditor-bundle": "1.2.0"
+        "Trsteel/ckeditor-bundle": "1.2.0",
+        "helios-ag/fm-elfinder-bundle": "dev-master"
     },
     "license": "MIT",
     "authors": [

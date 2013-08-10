@@ -5,6 +5,11 @@ imports:
     - { resource: cmf.yml }
     - { resource: fos.yml }
 
+parameters:
+    cmf_blog.post_admin_class: Vespolina\SiteBundle\Admin\Blog\PostAdmin
+    cmf_content.multilang.admin_class: Vespolina\SiteBundle\Admin\Content\StaticAdmin
+    cmf_block.multilang.simple_admin_class: Vespolina\SiteBundle\Admin\Block\SimpleAdmin
+
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
@@ -32,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    #bundles:        [ ]
+    bundles:        [FMElfinderBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -102,16 +107,23 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#fos_user:
-#    db_driver:     orm
-#    firewall_name: main
-#    user_class:    Ducos\RU\UserBundle\Entity\User
-#
-#    group:
-#        group_class: Ducos\RU\UserBundle\Entity\Group
-#
-#    profile:  # Authentication Form
-#        form:
-#            type:               fos_user_profile
-#            name:               fos_user_profile_form
-#            validation_groups:  [Authentication] # Please note : this is not the default value
+trsteel_ckeditor:
+    filebrowser_image_browse_url:
+        route: elfinder
+    contents_css:
+        - /bundles/vespolinasite/css/bootstrap/bootstrap.min.css
+        - /bundles/vespolinasite/css/app.css
+
+fm_elfinder:
+    locale: %locale%
+    editor: ckeditor # other choices are tinymce or simple
+    showhidden: false
+    connector:
+        debug: false # defaults to false
+        roots:       # at least one root must be defined
+            uploads:
+                driver: LocalFileSystem
+                path: uploads/content
+                upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'application/pdf', 'application/zip', 'application/octet-stream']
+                upload_deny: ['all']
+                upload_max_size: 20M

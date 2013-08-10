@@ -81,7 +81,6 @@ sonata_admin:
             blog:
                 label: Blog
                 items:
-                    - cmf_blog.admin
                     - cmf_post.admin
             menu:
                 label: Menu
