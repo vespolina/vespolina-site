@@ -10,10 +10,11 @@ Quick installation instructions
 ===============================
 
 1. Clone the project from github
-2. Run ``composer install``
-3. Create your own _parameters.yml_
-4. Create a vhost for your project
-5. Execute the follow commands
+2. Copy ``app/config/parameters.yml.dist`` to ``app/config/parameters.yml`` and adjust values to your need
+3. Run ``composer install``
+4. Create your own _parameters.yml_
+5. Create a vhost for your project
+6. Execute the follow commands
 
 ```
 $ php app/console doctrine:database:create
