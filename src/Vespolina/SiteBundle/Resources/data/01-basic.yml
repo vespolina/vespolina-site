@@ -2,9 +2,9 @@ homepage:
     route:
         en: /
     title:
-        en: Decoupled ecommerce framework for developers
+        en: Decoupled ecommerce framework business owners and developers will like!
     body:
-        en: <p>An OpenSource ecommerce framework, attracts both you as a developer as your manager!</p>
+        en: <p>The first opensource ecommerce project whith enterprise growth in mind!</p>
     template: VespolinaSiteBundle:Page:home.html.twig
     additionalInfoBlock:
         children:
@@ -13,18 +13,22 @@ homepage:
                 title:
                     en: Scalable Ecommerce
                 content:
-                    en: We need some text here
+                    en: |
+                     From starting your first new shop to an enterprise order processing system.  Yes, we has company growth in mind and got you covered both technical and operational aspects!
+                     Read more about <a href="/features/from-shop-to-multinational">growing from a single to a multinational shop</a>
             business-process:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
                     en: Business Process at it's core
                 content:
-                    en: And here too
+                    en: |
+                      Many opensource ecommerce systems do exist nowadays.  A topic which often is forgotton is the complexity of order processing.  Vespolina facilitates adjusting standard order to cash processes and let your developers easily create new processes tailored to your needs.
 get-started:
     route: /get-started
     title: Getting started
     body: |
         <p>Check back later</p>
+    template: VespolinaSiteBundle:Page:getting_started.html.twig
 try:
     route: /try
     title:
@@ -73,3 +77,28 @@ community:
             <li><a href="http://github.com/vespolina">Github</a></li>
             <li><a href="irc://chat.freenode.net#vespolina">IRC</a></li>
             <li><a href="https://groups.google.com/forum/#!forum/vespolina-dev">Google Groups</a></li>
+features:
+    route: /features/
+    title: Vespolina features
+    body: |
+        <p>Check back later</p>
+features-technical-architecture:
+    route: /features/technical-architecture
+    title: Technical architecture of Vespolina
+    body: |
+        <p>Check back later</p>
+features-from-shop-to-multinational:
+    route: /features/from-shop-to-multinational
+    title: From shop to multionational
+    body: |
+        <p>Check back later</p>
+features-why-using-vespolina:
+    route: /features/why-using-vespolina
+    title: Why using Vespolina
+    body: |
+        <p>Check back later</p>
+features-why-developing-with-vespolina:
+    route: /features/why-using-vespolina
+    title: Why developing with Vespolina
+    body: |
+        <p>Check back later</p>

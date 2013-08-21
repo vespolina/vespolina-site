@@ -21,8 +21,7 @@ class SyncGithubCommand extends ContainerAwareCommand
     {
         $this
             ->setName('vespolina:sync-github')
-            ->setDescription('Sync github data from vespolina respositories')
-            ->addOption('type', null, InputOption::VALUE_OPTIONAL, 'Store type', 'beverages')
+            ->setDescription('Sync github data from vespolina respositories');
         ;
     }
 
@@ -76,10 +75,7 @@ class SyncGithubCommand extends ContainerAwareCommand
     {
         return
             $name == 'molino' ||
-            $name == 'VespolinaCart' ||
-            $name == 'VespolinaCartBundle' ||
-            $name == 'VespolinaDocumentBundle' ||
-            $name == 'VespolinaEcommerceFlowsBundle';
+            $name == 'dummy';
     }
 
     protected function writeContributorsToTwigTemplate(array $contributors) {
