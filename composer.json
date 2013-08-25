@@ -24,6 +24,7 @@
         "symfony-cmf/menu-bundle": "1.0.0-beta2",
         "symfony-cmf/block-bundle": "1.0.0-beta2",
         "symfony-cmf/routing-bundle": "1.1.0-beta2",
+        "symfony-cmf/routing": "1.1.0-beta2",
         "symfony-cmf/tree-browser-bundle": "1.0.0-beta2",
         "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*@dev",
