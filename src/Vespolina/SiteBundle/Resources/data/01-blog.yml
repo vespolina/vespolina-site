@@ -1,9 +1,37 @@
 default:
     posts:
-        update:
-            title: An update from Vespolina
-            publishStartDate: '2013-08-10'
+        new_site:
+            title: New website, new identity
+            publishStartDate: '2013-08-26'
             body: |
                 <p>Vespolina isn't standing still, a lot has changed in the
                 last year. In this post we want to explain what has been done and
-                what is going on at the moment</p>
+                what is going on at the moment.</p>
+
+                <h3>New site</h3>
+                <p>The first thing you most probably have noticed is the new website and funky logo.
+                The folks from <a href="www.beeldspraak.com">Beeldspraak.com</a> have taken the time to donate us a fresh new design and logo.
+                Willem Jan has worked hard to integrate the new layout with the <a href="http://cmf.symfony.com">Symfony CMF</a> framework.</p>
+
+                <h3>Transition</h3>
+                <p>Vespolina started as a dedicated Symfony2 application leveraging the Symfony2 bundle system to create a decoupled ecommerce system.
+                  We created many bundles over time which made it hard to track progress as an outstander.
+                  Using these bundles in production we came to the conclusion that we ended up installing the same collection of bundles.
+
+                <p>Moreover we received requests from developers outside of the Symfony2 community to have some parts of the Vespolina code base usable in other frameworks such as Zend 2.
+                This lead us to create <a href="http://www.github.com/vespolina/commerce">Commerce</a> the framework agnostic commerce library containing the most frequently components such as Products, Orders, Partners (Customers), ...
+                </p>
+
+                <p>Vespolina is integrated into the Symfony2 framework through <a href="http://www.github.com/vespolina/VespolinaCommerceBundle">VespolinaCommerceBundle</a> and <a href="http://www.github.com/vespolina/VespolinaStoreBundle">VespolinaStoreBundle</a>.
+                The former bundle integrates managers such as the product and order manager into the Dependency Injection Container.  This bundle can be used outside of traditional ecommerce shops, for instance to create an order management system involving customers, products and orders.
+                The latter bundle transforms your Symfony2 application into an actual web shop frontend.
+                </p>
+                <p>
+                Many changes have been performed to make Vespolina a real flexible system.  We will cover changes an design decisions in forthcoming blog posts.
+                </p>
+
+                <h3>Communication<h3>
+
+                <h3>What to expect<h3>
+
+
