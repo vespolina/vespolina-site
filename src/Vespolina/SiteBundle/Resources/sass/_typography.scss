@@ -15,3 +15,7 @@ h3 {
 .post-title {
     @extend h3;
 }
+
+a {
+    color: $defaultLinkColor;
+}
