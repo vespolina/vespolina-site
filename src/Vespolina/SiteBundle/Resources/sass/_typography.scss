@@ -1,7 +1,7 @@
 h1, h2, h3, h4, h5 {
     color: $titleColor;
     font-weight: normal;
-    font-family: 'Open Sans', 'sans-serif';
+    @include opensans();
 }
 
 h1 {

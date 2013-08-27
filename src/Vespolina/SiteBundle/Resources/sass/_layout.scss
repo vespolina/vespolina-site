@@ -22,6 +22,12 @@ section[role="heading"] {
     background-color: $headerBackground;
     .logo {
         float: left;
+        height: 75px;
+        position: relative;
+        img {
+            position: absolute;
+            bottom: 10px;
+        }
     }
 }
 
@@ -33,13 +39,18 @@ section[role="navigation"] {
             position: absolute;
             min-height: 50px;
             top: -50px;
-            left: 200px; // Depending on logo size
+            left: 220px; // Depending on logo size
             li {
                 list-style: none;
                 float: left;
+                @include opensans();
                 a {
                     padding: 3px 10px;
                     line-height: 2em;
+                    color: $defaultTextColor;
+                }
+                &.current a {
+                    color: $introTitleColor;
                 }
             }
         }
