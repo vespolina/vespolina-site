@@ -15,7 +15,7 @@ homepage:
                 content:
                     en: |
                      From starting your first new shop to an enterprise order processing system.  Yes, we has company growth in mind and got you covered both technical and operational aspects!
-                     Read more about <a href="/features/from-shop-to-multinational">growing from a single to a multinational shop</a>
+                     Read more about <a href="/en/features/from-shop-to-multinational">growing from a single to a multinational shop</a>
             business-process:
                 class: Symfony\Cmf\Bundle\BlockBundle\Document\MultilangSimpleBlock
                 title:
@@ -82,23 +82,52 @@ features:
     title: Vespolina features
     body: |
         <p>Check back later</p>
+
 features-technical-architecture:
+    parent: features
     route: /features/technical-architecture
     title: Technical architecture of Vespolina
     body: |
         <p>Check back later</p>
+
 features-from-shop-to-multinational:
+    parent: features
     route: /features/from-shop-to-multinational
     title: From shop to multionational
     body: |
         <p>Check back later</p>
+
 features-why-using-vespolina:
+    parent: features
     route: /features/why-using-vespolina
     title: Why using Vespolina
     body: |
         <p>Check back later</p>
+
 features-why-developing-with-vespolina:
-    route: /features/why-using-vespolina
+    parent: features
+    route: /features/why-developing-with-vespolina
     title: Why developing with Vespolina
+    body: |
+        <p>Check back later</p>
+
+features-choose-your-components:
+    parent: features
+    route: /features/choose-your-components
+    title: Choose your components
+    body: |
+        <p>Check back later</p>
+
+features-configure-your-processes:
+    parent: features
+    route: /features/configure-your-processes
+    title: Configure your processes
+    body: |
+        <p>Check back later</p>
+
+features-integrate-with-your-business:
+    parent: features
+    route: /features/integrate-with-your-business
+    title: Integrate with your business
     body: |
         <p>Check back later</p>

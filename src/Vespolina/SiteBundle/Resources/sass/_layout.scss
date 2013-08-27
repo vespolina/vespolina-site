@@ -50,7 +50,7 @@ section[role="navigation"] {
                     color: $defaultTextColor;
                 }
                 &.current a {
-                    color: $introTitleColor;
+                    color: $defaultLinkColor;
                 }
             }
         }

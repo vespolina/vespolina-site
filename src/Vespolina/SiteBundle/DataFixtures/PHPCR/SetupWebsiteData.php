@@ -138,7 +138,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             $page->setLocale($this->defaultLocale);
 
             if (isset($pageData['parent'])) {
-                $parent = $this->dm->find(null, $pageData['parent']);
+                $parent = isset($this->pages[$pageData['parent']]) ? $this->pages[$pageData['parent']] : null;
                 if (!$parent) {
                     throw new \DomainException(sprintf('Parent document %s not found', $pageData['parent']));
                 }
