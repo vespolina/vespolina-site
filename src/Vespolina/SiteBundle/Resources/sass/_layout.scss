@@ -82,7 +82,7 @@ section[role="intro"] {
 }
 
 section[role="usp"] {
-    height: 265px;
+    padding-bottom: 25px;
     background: $headerBackground;
     ul {
         list-style: none;
@@ -133,8 +133,8 @@ section[role="content"] {
 .contributor {
     display: block;
     float: left;
-    width: 80px;
-    height: 110px;
+    width: 120px;
+    height: 140px;
     margin-right: 20px;
     text-align: center;
     img {

@@ -1,10 +1,10 @@
 <div class="post">
     <div class="row-fluid">
-        <div class="span9 post-title">
+        <div class="span8 post-title">
             <a href="{{ path(post) }}">{{ post.title }}</a>
         </div>
-        <div class="span3" style="text-align: right">
-            <i>{{ post.date.format('d-m-Y') }}</i>
+        <div class="span4" style="text-align: right">
+            <i>{{ post.authorName }}, {{ post.date.format('d-m-Y') }}</i>
         </div>
     </div>
     <div class="row-fluid">

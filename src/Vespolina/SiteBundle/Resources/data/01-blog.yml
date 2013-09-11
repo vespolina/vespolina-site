@@ -3,6 +3,7 @@ default:
         new_site:
             title: New website, new identity
             publishStartDate: '2013-08-26'
+            author: "Daniël Kucharski"
             body: |
                 <p>Vespolina isn't standing still, a lot has changed in the
                 last year. In this post we want to explain what has been done and

@@ -12,7 +12,7 @@ use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Cmf\Bundle\BlockBundle\Document\BaseBlock;
 use Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
-use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
+// use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
 use Symfony\Cmf\Bundle\ContentBundle\Document\MultilangStaticContent;
 use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenu;
 use Symfony\Cmf\Bundle\MenuBundle\Document\MultilangMenuNode;
@@ -24,6 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
+use Vespolina\SiteBundle\Document\Blog\Post;
 
 class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
 {
@@ -252,6 +253,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 $post->setBlog($blog);
                 $post->setTitle($postData['title']);
                 $post->setBody($postData['body']);
+                $post->setAuthorName($postData['author']);
                 $post->setPublishStartDate(new \DateTime($postData['publishStartDate']));
                 $post->setPublishable(true);
 

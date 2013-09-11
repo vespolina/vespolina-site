@@ -9,11 +9,9 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
  * Class TryBlock
  * @package Vespolina\SiteBundle\Document
  *
- * @PHPCRODM\Document(referenceable=true, translator="attribute")
  */
 class TryBlock extends MultilangSimpleBlock
 {
-    /** @PHPCRODM\String(translated=true) */
     protected $url;
 
     public function getType()

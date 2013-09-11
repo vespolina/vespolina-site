@@ -95,7 +95,41 @@ features-from-shop-to-multinational:
     route: /features/from-shop-to-multinational
     title: From shop to multionational
     body: |
-        <p>Check back later</p>
+        <p>Selecting an ecommerce system to be used for your business is often performed by comparing the looks of frontend
+        user interfaces.  When it looks attractive and supports basic ecommerce operations such as cart to order processing,
+        customer registration and some marketing features the choice is often easily made.</p>
+
+        <p>When business grows and employees are hired many ecommerce systems do not fit the simple use case anymore.
+        The software does not foresee additional complexities enterprise companies bring and developers are asked to add
+        additional business requirements by hacking the existing system.  Over time the system becomes lesser maintainable.
+        Adding new features becomes a tedious job resulting translating into an increased TOC (Total Cost Of Ownership).</p>
+
+
+        <p>Vespolina is designed from the ground up to help business owners to move from a simple web shop to an enterprise
+        company. Several enterprise functionalities are foreseen in the core of Vespolina while for others extension points
+        have been foreseen. Being open source in nature extension points can be added by anybody.</p>
+
+
+        <p>Ecommerce growth spans multiple dimensions, let us have a look at some:</p>
+
+        <p><strong>Multi channel sales</strong></p>
+
+        <p>Ecommerce usually starts with a web store selling a set of products. To increase revenue the business owner may
+        decide to open additional web stores selling the same goods. Perhaps at different prices. Vespolina supports multi channel
+        at it's core and keeps a reference to the sales channel for which the order was created.</p>
+
+
+        <p>A sales channel can be anything. It can be a web store, a physical point of sales system or perhaps a merchant
+        the business teams up with.</p>
+
+
+        <p><strong>Integration</strong></p>
+
+        <p>The Internet Cloud changed how merchants are doing sales. It is of the essence to be able to integrate easily
+        with other parties. At it's core Vespolina makes no assumption where information is ought to persisted. For instance,
+        one could decide to not store any products in the Vespolina core application but connect to an external product
+        repository. Another example would be to store products, and carts local and use an external system such as SAP to
+        store orders.</p>
 
 features-why-using-vespolina:
     parent: features

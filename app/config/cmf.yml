@@ -44,7 +44,8 @@ cmf_routing_auto:
                     strategy: auto_increment
                 not_exists_action:
                     strategy: create
-        Symfony\Cmf\Bundle\BlogBundle\Document\Post:
+#        Symfony\Cmf\Bundle\BlogBundle\Document\Post:
+        Vespolina\SiteBundle\Document\Blog\Post:
             content_path:
                 routing_path:
                     provider:
@@ -81,6 +82,8 @@ cmf_menu:
     allow_empty_items: true
 
 cmf_blog:
+    class:
+        post: Vespolina\SiteBundle\Document\Blog\Post
     blog_basepath: /cms/blog
 
 cmf_block:
