@@ -146,6 +146,16 @@ section[role="content"] {
     margin: 60px 0 0 0;
 }
 
+.getting-started {
+    article {
+        padding: 24px;
+        margin-top: 24px;
+        &.odd {
+            background: $headerBackground;
+        }
+    }
+}
+
 section[role="sponsors"] {
     .sponsor {
         margin-right: 24px;

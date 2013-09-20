@@ -3,39 +3,59 @@
 {% set isHomepage = false %}
 
 {% block content %}
-    <section role="usp">
-        <div class="container">
-            <div class="span8">
-                <ul>
-                    <li class="item">
-                        <div class="top">
-                            <span class="image configurable">&nbsp;</span>
-                        </div>
-                        <div class="inner">
-                            <h3>Read about the project goals</h3>
-                            <p>As a business owner we invite you to read about <a href="/en/features/why-using-vespolina">why using Vespolina</a></p>
-                            <p>Are you keen to learn about the technical architecture and how you can hack it?  Read about it <a href="/en/features/technical-architecture">over here.</a></p>
-                        </div>
-                    </li>
-                    <li class="item">
-                        <div class="top">
-                            <span class="image flexible">&nbsp;</span>
-                        </div>
-                        <div class="inner">
-                            <h3>Checkout Github</h3>
-                            <p>All our code is having an MIT license and can be freely used</p>
-                        </div>
-                    </li>
-                </ul>
+
+    <div class="container getting-started">
+
+        <h1>Getting started with Vespolina</h1>
+
+        <article class="container odd">
+
+            <div class="row-fluid">
+                <div class="span9">
+                    <h3>Read about the project goals</h3>
+                    <p>As a business owner we invite you to read about <a href="/en/features/why-using-vespolina">why using Vespolina</a></p>
+                    <p>Are you keen to learn about the technical architecture and how you can hack it?  Read about it <a href="/en/features/technical-architecture">over here.</a></p>
+                </div>
+                <div class="span3">
+                    <img src="{{ asset('bundles/vespolinasite/img/questionmark.png') }}" alt="About Vespolina" style="height:150px;" />
+                </div>
             </div>
-            <div class="span4">
-                Quick start
 
+        </article>
 
+        <article class="container even">
+
+            <div class="row-fluid">
+                <div class="span3">
+                    <img src="{{ asset('bundles/vespolinasite/img/octocat.png') }}" alt="Open Source" style="width:180px;" />
+                </div>
+                <div class="span9">
+                    <div class="inner">
+                        <h3>Checkout Github</h3>
+                        <p>All our code has a MIT license and can be freely used. The code is kept under the <a href="http://github.com/vespolina">vespolina</a> organisation.</p>
+                        <p>On GitHub you will find the libraries (e.g. <a href="http://github.com/vespolina/core">vespolina/core</a>), and Symfony Bundles (f.e.
+                            <a href="http://github.com/vespolina/VespolinaCommerceBundle">vespolina/CommerceBundle</a>)</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </article>
 
-    </section>
+        <article class="container odd">
+
+            <div class="row-fluid">
+                <div class="span9">
+                    <h3>Read the documentation</h3>
+                    <p>If you want to know some more about the inner workings of Vespolina, you should <a href="http://docs.vespolina.org">read the documentation</a>.</p>
+                    <p>There is a lot of documentation that still needs to be written, so with any questions you can join #vespolina on Freenode.</p>
+                </div>
+                <div class="span3">
+                    <img src="{{ asset('bundles/vespolinasite/img/book.png') }}" alt="Documentation" style="width:180px;margin-top: 40px;" />
+                </div>
+            </div>
+
+        </article>
+
+    </div>
 
     <section role="info">
         <div class="container">
