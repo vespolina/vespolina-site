@@ -387,13 +387,13 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                         $localeData[$locale]['content'] = $content;
                     }
                 } else {
-                    $block->setContent($child['body']); // We just hope this block type supports it here ;)
+                    $block->setContent($child['content']); // We just hope this block type supports it here ;)
                 }
             }
 
             if (isset($child['extra'])) {
                 foreach ($child['extra'] as $key => $value) {
-                    if (is_array($value)) {
+                    if (is_array($value) && isset($value[$this->defaultLocale])) {
                         if (!$this->dm->isDocumentTranslatable($block)) {
                             throw new \DomainException(sprintf('Block %s isn\'t translatable', $childName));
                         }
@@ -419,6 +419,8 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
             if (isset($child['children'])) {
                 $block->setChildren($this->processChildren($block, $child['children']));
             }
+
+            $this->dm->flush();
 
             $children->add($block);
 

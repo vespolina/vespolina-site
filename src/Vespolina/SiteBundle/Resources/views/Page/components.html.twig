@@ -1,0 +1,83 @@
+{% extends 'VespolinaSiteBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <h1>{{ cmfMainContent.title }}</h1>
+        {{ cmfMainContent.body|raw }}
+
+        {{ sonata_block_render(cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-title']) }}
+
+        <article class="row-fluid">
+
+            <div class="span2">
+                <a href="http://github.com/vespolina/core">Core</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['core'].content }}
+            </div>
+
+        </article>
+
+        <article class="row-fluid">
+
+            <div class="span2">
+                <a href="http://github.com/vespolina/VespolinaTaxonomy">Taxonomy</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['taxonomy'].content }}
+            </div>
+
+        </article>
+
+        <article class="row-fluid">
+
+            <div class="span2">
+                <a href="http://github.com/vespolina/Media">Media</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['media'].content }}
+            </div>
+
+        </article>
+
+        <h3>{{ cmfMainContent.additionalInfoBlock.children['adding-commerce'].title }}</h3>
+
+        <article class="row-fluid">
+            <div class="span2">
+                <a href="http://github.com/vespolina/commerce">Commerce</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['adding-commerce'].content }}
+            </div>
+        </article>
+
+        <h3>{{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].title }}</h3>
+
+        <article class="row-fluid">
+            <div class="span2">
+                <a href="http://github.com/vespolina/VespolinaCommerceBundle">CommerceBundle</a>
+                <br />
+                <br />
+                <br />
+                <a href="http://github.com/vespolina/VespolinaStoreBundle">StoreBundle</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].content }}
+            </div>
+        </article>
+
+        <h3>{{ cmfMainContent.additionalInfoBlock.children['sandbox'].title }}</h3>
+
+        <article class="row-fluid">
+            <div class="span2">
+                <a href="http://github.com/vespolina/vespolina-sandbox">Sandbox</a>
+            </div>
+            <div class="span10">
+                {{ cmfMainContent.additionalInfoBlock.children['sandbox'].content }}
+            </div>
+        </article>
+
+    </div>
+{% endblock %}

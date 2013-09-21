@@ -151,20 +151,45 @@ features-choose-your-components:
     title: Choose your components
     body: |
         <p>The Vespolina project is primarily an commerce framework.  What makes it assume is the fact that many components can be used outside of the traditional commerce context.  Even better various components can be used independently and are framework agnostic.   Others tie the Symfony2 framework to Vespolina making the framework even more awesome.  Let us start by looking at the Vespolina Sandbox from a bottom up perspective.</p>
-        <h3>Basic libraries</h3>
-        <h4>Core</h4>
-        <p>The basis consists of the Core library containing core entities such as as product, order, customer and so on.  The entities are persistence agnostic and allow anyone to jumpstart their project with easy to use entities.</p>
-        <h4>Taxonomy</h4>
-        <p>Taxonomy is a library to manage taxonomies such as product categories, customer classifications and so on.  It is a self standing library supporting persisting and retrieving taxonomies from Doctrine and PHPCR.</p>
-        <h4>Media</h4>
-        <p>Media is a library to manage the abstract concept of media data, such as images, videos, documents and so on.</p>
-        <h3>Adding the commerce flavour</h3>
-        <p>Commerce library is a collection of subcomponents to manage the foundations of commerce process.  It allows you to create products, orders, customers, manage prices and so on.   The library is ideal to kickstart your commerce, ERP or CRM project.  Start with the comerce library and use the extension points to fast track your project.</p>
-        <h3>Adding the Symfony2 framework flavour</h3>
-        <p>Symfony2 is an awesome framework.  We provide the CommerceBundle to integrate the commerce library and provide various standard controllers and views to kickstart any commerce based on Symfony2.  Building a CRM project is as easy as integrating this bundle and you already have Business Partners (customers, employees) and track products they have bought.  It is an ideal base to create a backend ERP system.</p>
-        <p>One step further is to build an actual web store frontend using the StoreBundle.  It provides controllers and views to create a store frontend to display products and various commerce processes such as checkout.</p>
-        <h3>Sandbox / standard edition</h3>
-        <p>The sandbox combines the CommerceBundle and StoreBundle and uses indirectly all libraries such as commerce, core, taxonomy and media to create a full web store experience.  The choice is up to you!</p>
+    additionalInfoBlock:
+        children:
+            basic-libraries:
+                class: Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock
+                children:
+                    basic-libraries-title:
+                        title: Basic libraries
+                        extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h3.html.twig } }
+                    basic-libraries-children:
+                        class: Symfony\Cmf\Bundle\BlockBundle\Document\ContainerBlock
+                        children:
+                            core:
+                                title: Core
+                                content: The basis consists of the Core library containing core entities such as as product, order, customer and so on. The entities are persistence agnostic and allow anyone to jumpstart their project with easy to use entities.
+                                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h4.html.twig } }
+                            taxonomy:
+                                title: Taxonomy
+                                content: Taxonomy is a library to manage taxonomies such as product categories, customer classifications and so on. It is a self standing library supporting persisting and retrieving taxonomies from Doctrine and PHPCR.
+                                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h4.html.twig } }
+                            media:
+                                title: Media
+                                content: Media is a library to manage the abstract concept of media data, such as images, videos, documents and so on.
+                                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h4.html.twig } }
+            adding-commerce:
+                title: Adding the commerce flavour
+                content: Commerce library is a collection of subcomponents to manage the foundations of commerce process. It allows you to create products, orders, customers, manage prices and so on. The library is ideal to kickstart your commerce, ERP or CRM project. Start with the comerce library and use the extension points to fast track your project.
+                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h3.html.twig } }
+            adding-symfony2:
+                title: Adding the Symfony2 framework flavour
+                content: |
+                    Symfony2 is an awesome framework. We provide the CommerceBundle to integrate the commerce library and provide various standard controllers and views to kickstart any commerce based on Symfony2. Building a CRM project is as easy as integrating this bundle and you already have Business Partners (customers, employees) and track products they have bought. It is an ideal base to create a backend ERP system.
+                    One step further is to build an actual web store frontend using the StoreBundle. It provides controllers and views to create a store frontend to display products and various commerce processes such as checkout.
+                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h3.html.twig } }
+            sandbox:
+                title: Sandbox / standard edition
+                content: The sandbox combines the CommerceBundle and StoreBundle and uses indirectly all libraries such as commerce, core, taxonomy and media to create a full web store experience. The choice is up to you!
+                extra: { settings: { template: VespolinaSiteBundle:Block:block_simple_h3.html.twig } }
+    template: VespolinaSiteBundle:Page:components.html.twig
+
 
 features-configure-your-processes:
     parent: features
