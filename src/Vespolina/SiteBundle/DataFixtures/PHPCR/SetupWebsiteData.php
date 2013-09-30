@@ -255,6 +255,7 @@ class SetupWebsiteData implements FixtureInterface, ContainerAwareInterface
                 $post->setBody($postData['body']);
                 $post->setAuthorName($postData['author']);
                 $post->setPublishStartDate(new \DateTime($postData['publishStartDate']));
+                $post->setDate(new \DateTime($postData['publishStartDate']));
                 $post->setPublishable(true);
 
                 $this->dm->persist($post);
