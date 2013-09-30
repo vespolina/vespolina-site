@@ -153,11 +153,34 @@ section[role="content"] {
         &.odd {
             background: $headerBackground;
         }
+        .icon {
+            line-height: 120px;
+            img {
+                max-height: 120px;
+                max-width: 120px;
+            }
+        }
     }
 }
 
 article {
     margin-bottom: 12px;
+}
+
+.blog__post {
+    .date {
+        float: left;
+        font-style: italic;
+    }
+    .author {
+        float: right;
+        text-align: right;
+        font-style: italic;
+    }
+}
+
+.comments {
+    margin-top: 2em;
 }
 
 section[role="sponsors"] {

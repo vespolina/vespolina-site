@@ -28,6 +28,7 @@ class SyncGithubCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 		$this->client = new \Github\Client();
+        $this->client->authenticate('6bc8d03897625755429260664b4440fef6c27d5a', null, \Github\Client::AUTH_URL_TOKEN);
 		$result = $this->syncRepositories($input, $output);
 
         $output->writeln(count($result['contributors']) . ' unique contributors so far');
@@ -39,6 +40,8 @@ class SyncGithubCommand extends ContainerAwareCommand
 		
 		$contributors = array();
 		$repositories = $this->getGitRepositories();
+
+        $totalContributions = 0;
 		
 		foreach ($repositories as $repository) {
 			
@@ -46,9 +49,17 @@ class SyncGithubCommand extends ContainerAwareCommand
 			$repoContributors = $this->client->api('repo')->contributors('vespolina', $name);
 
          	foreach ($repoContributors as $contributor) {
-				if (!array_key_exists($contributor['login'], $contributor )) {
+				if (!array_key_exists($contributor['login'], $contributors )) {
 					$contributors[$contributor['login']] = $contributor;
 			    }
+
+                $totalContributions += $contributor['contributions'];
+
+                if (!isset($contributors[$contributor['login']]['total_contributions'])) {
+                    $contributors[$contributor['login']]['total_contributions'] = $contributor['contributions'];
+                } else {
+                    $contributors[$contributor['login']]['total_contributions'] += $contributor['contributions'];
+                }
 			}
 			$output->writeln('-' . $name . ' with ' . count($repoContributors) . ' contributors');
 		}
@@ -83,6 +94,8 @@ class SyncGithubCommand extends ContainerAwareCommand
         $html = '';
         $twigFile = __DIR__ . '/../Resources/views/Default/_contributors.html.twig';
 
+
+        $unsortedHtmlResult = array();
         foreach ($contributors as $contributor) {
 
             if (array_key_exists('name', $contributor)) {
@@ -93,8 +106,20 @@ class SyncGithubCommand extends ContainerAwareCommand
 
             $gravatarImageUrl = 'http://www.gravatar.com/avatar/' . $contributor['gravatar_id'] ;
             $gitUrl = 'http://www.github.com/' . $contributor['login'];
-            $html .= '<span class="contributor"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a><br />' . $name . '</span>' . PHP_EOL;
+            $unsortedHtmlResult[$name] = array(
+                'html' => '<span class="contributor" data-contributions="' . $contributor['total_contributions'] . '"><a href="' . $gitUrl . '"><img src="'. $gravatarImageUrl . '" alt="' . $name . '"/></a><br />' . $name . '</span>' . PHP_EOL,
+                'contributions' => $contributor['total_contributions'],
+            );
 
+        }
+
+        usort($unsortedHtmlResult, function ($x, $y) {
+            return $x['contributions'] < $y['contributions'] ? 1 : -1;
+        });
+
+        $html = '';
+        foreach ($unsortedHtmlResult as $htmlResult) {
+            $html .= $htmlResult['html'];
         }
 
         file_put_contents($twigFile, $html);

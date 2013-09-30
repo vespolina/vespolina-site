@@ -2,7 +2,7 @@ default:
     posts:
         new_site:
             title: New website, new identity
-            publishStartDate: '2013-08-26'
+            publishStartDate: '2013-10-01'
             author: "Daniël Kucharski"
             body: |
                 <p>Vespolina isn't standing still, a lot has changed in the

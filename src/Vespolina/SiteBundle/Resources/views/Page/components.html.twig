@@ -14,7 +14,7 @@
             <div class="span2">
                 <a href="http://github.com/vespolina/core">Core</a>
             </div>
-            <div class="span10">
+            <div class="span6">
                 {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['core'].content }}
             </div>
 
@@ -25,7 +25,7 @@
             <div class="span2">
                 <a href="http://github.com/vespolina/VespolinaTaxonomy">Taxonomy</a>
             </div>
-            <div class="span10">
+            <div class="span6">
                 {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['taxonomy'].content }}
             </div>
 
@@ -36,7 +36,7 @@
             <div class="span2">
                 <a href="http://github.com/vespolina/Media">Media</a>
             </div>
-            <div class="span10">
+            <div class="span6">
                 {{ cmfMainContent.additionalInfoBlock.children['basic-libraries'].children['basic-libraries-children'].children['media'].content }}
             </div>
 
@@ -48,23 +48,28 @@
             <div class="span2">
                 <a href="http://github.com/vespolina/commerce">Commerce</a>
             </div>
-            <div class="span10">
+            <div class="span6">
                 {{ cmfMainContent.additionalInfoBlock.children['adding-commerce'].content }}
             </div>
         </article>
 
-        <h3>{{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].title }}</h3>
+        {{ sonata_block_render(cmfMainContent.additionalInfoBlock.children['adding-symfony2'].children['adding-symfony2-title']) }}
 
         <article class="row-fluid">
             <div class="span2">
                 <a href="http://github.com/vespolina/VespolinaCommerceBundle">CommerceBundle</a>
-                <br />
-                <br />
-                <br />
+            </div>
+            <div class="span6">
+                {{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].children['adding-symfony2-children'].children['commerce-bundle'].content }}
+            </div>
+        </article>
+
+        <article class="row-fluid">
+            <div class="span2">
                 <a href="http://github.com/vespolina/VespolinaStoreBundle">StoreBundle</a>
             </div>
-            <div class="span10">
-                {{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].content }}
+            <div class="span6">
+                {{ cmfMainContent.additionalInfoBlock.children['adding-symfony2'].children['adding-symfony2-children'].children['store-bundle'].content }}
             </div>
         </article>
 
@@ -74,7 +79,7 @@
             <div class="span2">
                 <a href="http://github.com/vespolina/vespolina-sandbox">Sandbox</a>
             </div>
-            <div class="span10">
+            <div class="span6">
                 {{ cmfMainContent.additionalInfoBlock.children['sandbox'].content }}
             </div>
         </article>
