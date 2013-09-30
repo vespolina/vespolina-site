@@ -88,7 +88,37 @@ features-technical-architecture:
     route: /features/technical-architecture
     title: Technical architecture of Vespolina
     body: |
-        <p>Check back later</p>
+        <h3>Introduction</h3>
+
+        <p>The Vespolina framework is build with PHP and consists of several libraries hosted on Github which can to a certain extend be used individually. &nbsp;&nbsp;</p>
+
+        <h3>Framework agnostic libraries</h3>
+
+        <p>The main libraries are framework agnostic and can hence be used in your framework of choice such as Zend, Symfony2, Silex or WhatEver(tm). &nbsp; We currently do provide bindings to the <a href="http://symfony.com">Symfony2</a> framework and encourage our community to to integrate our main libraries with their framework of choice and contribute.</p>
+
+        <p>Some of our libraries like <a href="http://github.com/vespolina/core">Core</a> and <a href="http://github.com/vespolina/commerce">Commerce</a> are dedicated to ecommerce processes while others can be used in other contexts. Let us have a look some of these libraries.</p>
+
+        <h4>Core</h4>
+
+        <p>Defines a collection of broadly used ecommerce entities together with their interfaces for entities such a Product, Order, Partner, Invoice, ... in a domain data driven design; we don&#39;t explicitly add persistence specific details.&nbsp;</p>
+
+        <h4>Commerce</h4>
+
+        <p>Goes one step further and helps the developer to making out of all these entities by providing managers to create, read, update and remove entities from a persistence gateway. &nbsp; For instance, products can be created using a product manager, which use in turn product handlers to allow specific behavior per product type. &nbsp;<br />
+        Gateways are used to persist entities to a persistence store. &nbsp;The cool think about our implementation is that we don&#39;t assume your gateway should be traditional database but could be a remote system interaction with a REST api. &nbsp;We do encourage you to read more about &nbsp;gateways in vespolina.</p>
+
+        <h4>Action</h4>
+
+        <p>The Action&nbsp;library manages the lifecycle of actions. An action is something to be executed at a given time. This might be direct or scheduled to be executed in the future. The action keeps track of the outcome of the execution and saves the state of the execution into a persistence layer.</p>
+
+        <h4>Taxonomy</h4>
+
+        <p>This library would handle&nbsp;classification. This can be used in ecommece (like product categories) but can be used in a lot of different contexts outside ecommerce as well.</p>
+
+        <h3>Symfony2 framework&nbsp;bindings</h3>
+
+        <p>The Vespolina demo store is made of a standard Symfony2 application and uses <a href="http://github.com/vespolina/VespolinaStoreBundle">StoreBundle</a> and <a href="http://github.com/vespolina/VespolinaCommerceBundle">CommerceBundle</a>. &nbsp;The former bundle is responsible for handling user interaction and behavior of a web shop whilest the latter integrates the commerce library to the symfony2 framework.</p>
+
 
 features-from-shop-to-multinational:
     parent: features
