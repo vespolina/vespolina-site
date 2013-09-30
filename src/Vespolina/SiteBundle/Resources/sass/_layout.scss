@@ -192,3 +192,9 @@ section[role="sponsors"] {
         }
     }
 }
+
+footer {
+    text-align: center;
+    font-style: italic;
+    @include font-size(12px);
+}

@@ -28,7 +28,6 @@ class SyncGithubCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 		$this->client = new \Github\Client();
-        $this->client->authenticate('6bc8d03897625755429260664b4440fef6c27d5a', null, \Github\Client::AUTH_URL_TOKEN);
 		$result = $this->syncRepositories($input, $output);
 
         $output->writeln(count($result['contributors']) . ' unique contributors so far');
@@ -42,11 +41,14 @@ class SyncGithubCommand extends ContainerAwareCommand
 		$repositories = $this->getGitRepositories();
 
         $totalContributions = 0;
+
+        $rawData = array();
 		
 		foreach ($repositories as $repository) {
 			
 			$name = $repository['name'];
 			$repoContributors = $this->client->api('repo')->contributors('vespolina', $name);
+            $rawData[$name] = $repoContributors;
 
          	foreach ($repoContributors as $contributor) {
 				if (!array_key_exists($contributor['login'], $contributors )) {
@@ -63,6 +65,8 @@ class SyncGithubCommand extends ContainerAwareCommand
 			}
 			$output->writeln('-' . $name . ' with ' . count($repoContributors) . ' contributors');
 		}
+
+        file_put_contents('/tmp/githubsync-debug.json', json_encode($rawData, JSON_PRETTY_PRINT));
 
         return array('contributors' => $contributors, 'repositories' => $repositories);
 	}
