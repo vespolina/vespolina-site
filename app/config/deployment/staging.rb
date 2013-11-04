@@ -1,0 +1,1 @@
+set :deploy_to, "/var/www/vhosts/vespolina.org/subdomains/beta/httpdocs"
